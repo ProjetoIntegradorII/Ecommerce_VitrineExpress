@@ -1,0 +1,12 @@
+{
+  // Opções de configuração do compilador TypeScript
+  "compilerOptions": {
+    // Define o diretório base para a resolução de módulos
+    "baseUrl": ".",
+    // Define os caminhos personalizados para a resolução de módulos
+    "paths": {
+      // Mapeia o alias "@" para corresponder a qualquer caminho dentro da pasta "src"
+      "@/*": ["./src/*"]
+    }
+  }
+}
