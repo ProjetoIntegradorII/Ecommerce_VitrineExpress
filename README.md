@@ -1,4 +1,4 @@
-# 🛒 E-commerce Simples para Microempreendedores de Bairro
+# 🛒 Vitrine Express - E-commerce Simples para Microempreendedores
 
 ## 📖 Sobre
 
