@@ -30,15 +30,14 @@ Este projeto é uma aplicação de e-commerce desenvolvida como parte da discipl
 
 ## 📸 Demonstração
 
-![Demonstração do E-commerce](https://via.placeholder.com/800x400?text=Demonstra%C3%A7%C3%A3o+do+E-commerce)
-
 ## 📂 Estrutura do Projeto
 
-##🔧 Como Executar o Projeto
+## 🔧 Como Executar o Projeto
 
-##📜 Licença
+## 📜 Licença
 Este projeto está licenciado sob a MIT License.
 
-##🤝 Contribuições
+## 🤝 Contribuiçoes
 Contribuições são bem-vindas! Se você tiver sugestões para melhorias, sinta-se à vontade para abrir uma issue ou enviar um pull request.
+
 
