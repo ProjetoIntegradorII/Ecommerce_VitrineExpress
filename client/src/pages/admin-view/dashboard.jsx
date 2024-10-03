@@ -46,7 +46,7 @@ function AdminDashboard() {
         // isEditMode={currentEditedId !== null} // Comentado: pode ser usado para modo de edição
       />
       <Button onClick={handleUploadFeatureImage} className="mt-5 w-full">
-        Upload // Botão para fazer o upload da imagem
+        Upload {/* Botão para fazer o upload da imagem*/}
       </Button>
       <div className="flex flex-col gap-4 mt-5">
         {featureImageList && featureImageList.length > 0 // Verifica se há imagens de destaque

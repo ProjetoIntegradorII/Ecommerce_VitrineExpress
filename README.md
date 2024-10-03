@@ -8,6 +8,7 @@ Este projeto é uma aplicação de e-commerce desenvolvida como parte da discipl
 
 - **Frontend**:
   - [React](https://reactjs.org/)
+  - [Vite](https://vitejs.dev/)
   - [Redux Toolkit](https://redux-toolkit.js.org/)
   - [Tailwind CSS](https://tailwindcss.com/)
 

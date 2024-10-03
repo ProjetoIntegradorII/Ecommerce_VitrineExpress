@@ -1,0 +1,111 @@
+***Estrutura do Cliente (client)***
+
+- node_modules: Contém as dependências do projeto instaladas via npm.
+
+- public: Pasta para arquivos estáticos que podem ser servidos diretamente, como ícones e imagens (ex. vite.svg).
+
+- src: Diretório principal que contém todos os arquivos de código-fonte da aplicação.
+
+    *assets: Armazena imagens e outros recursos estáticos utilizados na aplicação (ex. account.jpg, react.svg).
+
+    *components: Contém componentes reutilizáveis que compõem a interface do usuário.
+
+        admin-view: Componentes específicos para a visão administrativa (ex. header.jsx, sidebar.jsx).
+
+        auth: Componentes relacionados à autenticação (ex. layout.jsx, check-auth.jsx).
+
+        common: Componentes comuns que podem ser usados em várias partes da aplicação (ex. form.jsx, star-rating.jsx).
+
+        shopping-view: Componentes que representam a experiência de compras (ex. cart-items-content.jsx, product-details.jsx).
+
+        ui: Componentes de interface do usuário reutilizáveis, como botões e tabelas (ex. button.jsx, table.jsx).
+
+    *config: Configurações gerais da aplicação, como o arquivo index.js que centraliza as exportações.
+
+    *hooks: Hooks personalizados para gerenciar o estado e a lógica da aplicação.
+
+    *lib: Biblioteca de utilitários e funções auxiliares.
+
+    *pages: Componentes que representam páginas inteiras da aplicação.
+
+        admin-view: Páginas específicas para a administração (ex. dashboard.jsx, products.jsx).
+
+        auth: Páginas de autenticação (ex. login.jsx, register.jsx).
+
+        not-found: Página exibida quando uma rota não é encontrada (index.jsx).
+
+        shopping-view: Páginas relacionadas à experiência de compras (ex. checkout.jsx, listing.jsx).
+
+        unauth-page: Página para usuários não autenticados (index.jsx).
+
+    *store: Contém a configuração do Redux e slices para gerenciar o estado da aplicação.
+
+        admin, common, shop: Subpastas com slices do Redux para gerenciar diferentes partes do estado.
+
+        JS store.js: Arquivo de configuração da loja Redux.
+
+-App.css: Estilos globais para a aplicação.
+
+-App.jsx: Componente principal da aplicação.
+
+-index.css: Estilos de nível superior para a aplicação.
+
+-main.jsx: Ponto de entrada da aplicação, onde o aplicativo React é montado.
+
+-.gitignore: Especifica quais arquivos ou pastas devem ser ignorados pelo Git.
+
+-components.json: a arquivo de configuração ou metadados para componentes.
+
+-eslint.config.js: Configuração do ESLint para linting do código JavaScript.
+
+-index.html: O arquivo HTML principal que contém o ponto de entrada para o React.
+
+-JS jsconfig.json: Configuração do JavaScript para o editor.
+
+-package-lock.json: Arquivo que registra a versão exata de cada pacote instalado.
+
+-package.json: Contém informações sobre o projeto, incluindo dependências, scripts e metadados.
+
+-postcss.config.js: Configuração do PostCSS, usado para processar CSS.
+
+-README.md: Documentação do projeto.
+
+-tailwind.config.js: Configuração do Tailwind CSS para estilos utilitários.
+
+-vite.config.js: Configuração do Vite, um bundler moderno para aplicações web.
+
+-----------------------------------------------------------------------------------------------------------
+
+***Estrutura do Servidor (server)***
+
+-controllers: Contém a lógica de controle para diferentes partes da aplicação.
+
+    admin: Controladores para gerenciar produtos e pedidos no painel administrativo.
+
+    auth: Controlador para gerenciar autenticação (ex. auth-controller.js).
+
+    common: Controlador para funcionalidades comuns, como gerenciamento de recursos.
+
+    shop: Controladores para gerenciar o carrinho, endereços, pedidos e revisões de produtos.
+
+-helpers: Contém utilitários e funções auxiliares (ex. para integração com Cloudinary e PayPal).
+
+-models: Define os esquemas do Mongoose para as coleções do MongoDB.
+
+-routes: Define as rotas da API para diferentes recursos.
+
+    admin: Rotas relacionadas ao painel administrativo.
+
+    auth: Rotas para autenticação de usuários.
+
+    common: Rotas para funcionalidades comuns.
+
+    shop: Rotas para gerenciar o carrinho, endereços, pedidos, produtos e revisões.
+
+-.gitignore: Especifica quais arquivos ou pastas devem ser ignorados pelo Git.
+
+-package-lock.json: Arquivo que registra a versão exata de cada pacote instalado.
+
+-package.json: Contém informações sobre o projeto, incluindo dependências, scripts e metadados.
+
+-JS server.js: Ponto de entrada do servidor, onde a aplicação é inicializada.
