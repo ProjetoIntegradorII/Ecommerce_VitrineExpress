@@ -21,8 +21,8 @@ function ShoppingAccount() {
           <Tabs defaultValue="orders">
             {/* Lista de abas para navegação */}
             <TabsList>
-              <TabsTrigger value="orders">Orders</TabsTrigger> {/* Aba de pedidos */}
-              <TabsTrigger value="address">Address</TabsTrigger> {/* Aba de endereço */}
+              <TabsTrigger value="orders">Pedidos</TabsTrigger> {/* Aba de pedidos */}
+              <TabsTrigger value="address">Endereço</TabsTrigger> {/* Aba de endereço */}
             </TabsList>
             {/* Conteúdo da aba de pedidos */}
             <TabsContent value="orders">

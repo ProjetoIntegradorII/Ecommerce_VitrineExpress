@@ -35,7 +35,7 @@ function ShoppingCheckout() {
     // Verifica se o carrinho está vazio
     if (cartItems.length === 0) {
       toast({
-        title: "Your cart is empty. Please add items to proceed",
+        title: "Seu carrinho está vazio. Adicione itens para continuar!",
         variant: "destructive", // Define a mensagem como erro
       });
       return;
@@ -44,7 +44,7 @@ function ShoppingCheckout() {
     // Verifica se um endereço foi selecionado
     if (currentSelectedAddress === null) {
       toast({
-        title: "Please select one address to proceed.",
+        title: "Selecione um endereço para prosseguir.",
         variant: "destructive", // Define a mensagem como erro
       });
       return;
@@ -118,15 +118,15 @@ function ShoppingCheckout() {
           <div className="mt-8 space-y-4">
             <div className="flex justify-between">
               <span className="font-bold">Total</span>
-              <span className="font-bold">${totalCartAmount}</span> {/* Exibe o total do carrinho */}
+              <span className="font-bold">R${totalCartAmount}</span> {/* Exibe o total do carrinho */}
             </div>
           </div>
           <div className="mt-4 w-full">
             {/* Botão de checkout */}
             <Button onClick={handleInitiatePaypalPayment} className="w-full">
               {isPaymentStart
-                ? "Processing Paypal Payment..." // Texto quando o pagamento está sendo processado
-                : "Checkout with Paypal"} {/* Texto quando está pronto para checkout */}
+                ? "Processando pagamento ..." // Texto quando o pagamento está sendo processado
+                : "Finalizar compra"} {/* Texto quando está pronto para checkout */}
             </Button>
           </div>
         </div>

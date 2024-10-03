@@ -4,24 +4,30 @@ import { Label } from "../ui/label"; // Importa o componente Label
 import { Checkbox } from "../ui/checkbox"; // Importa o componente Checkbox
 import { Separator } from "../ui/separator"; // Importa o componente Separator
 
+// Mapeamento dos títulos dos filtros
+const filterTitles = {
+  category: "Categorias",
+  brand: "Marcas",
+  // Adicione outros mapeamentos de título se necessário
+};
+
 // Componente para aplicar filtros em produtos
 function ProductFilter({ filters, handleFilter }) {
   return (
     <div className="bg-background rounded-lg shadow-sm"> {/* Container do filtro com fundo e sombra */}
       <div className="p-4 border-b"> {/* Cabeçalho do filtro */}
-        <h2 className="text-lg font-extrabold">Filters</h2> {/* Título do filtro */}
+        <h2 className="text-lg font-extrabold">Filtro</h2> {/* Título do filtro */}
       </div>
       <div className="p-4 space-y-4"> {/* Espaçamento interno e entre filtros */}
         {Object.keys(filterOptions).map((keyItem) => ( // Itera sobre as chaves de filterOptions
           <Fragment key={keyItem}> {/* Usando Fragment para agrupar elementos */}
             <div>
-              <h3 className="text-base font-bold">{keyItem}</h3> {/* Título da categoria de filtro */}
+              <h3 className="text-base font-bold">{filterTitles[keyItem]}</h3> {/* Título da categoria de filtro usando o mapeamento */}
               <div className="grid gap-2 mt-2"> {/* Grid para opções de filtro */}
                 {filterOptions[keyItem].map((option) => ( // Itera sobre as opções de filtro
                   <Label className="flex font-medium items-center gap-2" key={option.id}> {/* Label para cada opção */}
                     <Checkbox
-                      checked={
-                        filters && // Verifica se filters existem e têm opções
+                      checked={filters && // Verifica se filters existem e têm opções
                         Object.keys(filters).length > 0 &&
                         filters[keyItem] &&
                         filters[keyItem].indexOf(option.id) > -1 // Verifica se a opção está selecionada

@@ -97,9 +97,10 @@ function HeaderRightContent() {
         >
           <ShoppingCart className="w-6 h-6" />
           <span className="absolute top-[-5px] right-[2px] font-bold text-sm">
-            {cartItems?.items?.length || 0} {/* Exibe o número de itens no carrinho */}
+            {cartItems?.items?.length || 0}{" "}
+            {/* Exibe o número de itens no carrinho */}
           </span>
-          <span className="sr-only">User cart</span>
+          <span className="sr-only">Carrinho</span>
         </Button>
         <UserCartWrapper
           setOpenCartSheet={setOpenCartSheet}
@@ -115,21 +116,22 @@ function HeaderRightContent() {
         <DropdownMenuTrigger asChild>
           <Avatar className="bg-black">
             <AvatarFallback className="bg-black text-white font-extrabold">
-              {user?.userName[0].toUpperCase()} {/* Exibe a inicial do nome do usuário */}
+              {user?.userName[0].toUpperCase()}{" "}
+              {/* Exibe a inicial do nome do usuário */}
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent side="right" className="w-56">
-          <DropdownMenuLabel>Logged in as {user?.userName}</DropdownMenuLabel>
+          <DropdownMenuLabel>Logado como {user?.userName}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => navigate("/shop/account")}>
             <UserCog className="mr-2 h-4 w-4" />
-            Account {/* Link para a conta do usuário */}
+            Conta {/* Link para a conta do usuário */}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={handleLogout}>
             <LogOut className="mr-2 h-4 w-4" />
-            Logout {/* Item para fazer logout */}
+            Sair {/* Item para fazer logout */}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -146,13 +148,14 @@ function ShoppingHeader() {
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
         <Link to="/shop/home" className="flex items-center gap-2">
           <HousePlug className="h-6 w-6" />
-          <span className="font-bold">Ecommerce</span> {/* Título do cabeçalho */}
+          <span className="font-bold">Vitrine Express</span>{" "}
+          {/* Título do cabeçalho */}
         </Link>
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="lg:hidden">
               <Menu className="h-6 w-6" />
-              <span className="sr-only">Toggle header menu</span>
+              <span className="sr-only">Alternar menu do cabeçalho</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-full max-w-xs">
@@ -165,7 +168,8 @@ function ShoppingHeader() {
         </div>
 
         <div className="hidden lg:block">
-          <HeaderRightContent /> {/* Renderiza o conteúdo à direita em telas grandes */}
+          <HeaderRightContent />{" "}
+          {/* Renderiza o conteúdo à direita em telas grandes */}
         </div>
       </div>
     </header>

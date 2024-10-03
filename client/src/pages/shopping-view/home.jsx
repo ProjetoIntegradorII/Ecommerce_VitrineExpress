@@ -1,18 +1,12 @@
 import { Button } from "@/components/ui/button"; // Importa o botão estilizado
 import {
-  Airplay,
-  BabyIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  CloudLightning,
-  Heater,
-  Images,
   Shirt,
-  ShirtIcon,
-  ShoppingBasket,
-  UmbrellaIcon,
-  WashingMachine,
-  WatchIcon,
+  NotebookText,
+  PackageSearch,
+  PencilRuler,
+  Sparkles,
 } from "lucide-react"; // Importa ícones do Lucide
 import { Card, CardContent } from "@/components/ui/card"; // Importa componentes de cartão
 import { useEffect, useState } from "react"; // Importa hooks do React
@@ -30,21 +24,19 @@ import { getFeatureImages } from "@/store/common-slice"; // Importa ação para 
 
 // Define categorias com ícones
 const categoriesWithIcon = [
-  { id: "men", label: "Men", icon: ShirtIcon },
-  { id: "women", label: "Women", icon: CloudLightning },
-  { id: "kids", label: "Kids", icon: BabyIcon },
-  { id: "accessories", label: "Accessories", icon: WatchIcon },
-  { id: "footwear", label: "Footwear", icon: UmbrellaIcon },
+  { id: "papelaria", label: "Papelaria", icon: NotebookText },
+  { id: "aviamento", label: "Aviamento", icon: Shirt },
+  { id: "outros", label: "Outros", icon: PackageSearch },
 ];
 
 // Define marcas com ícones
 const brandsWithIcon = [
-  { id: "nike", label: "Nike", icon: Shirt },
-  { id: "adidas", label: "Adidas", icon: WashingMachine },
-  { id: "puma", label: "Puma", icon: ShoppingBasket },
-  { id: "levi", label: "Levi's", icon: Airplay },
-  { id: "zara", label: "Zara", icon: Images },
-  { id: "h&m", label: "H&M", icon: Heater },
+  { id: "fabercastell", label: "Faber-Castell", icon: PencilRuler },
+  { id: "tilibra", label: "Tilibra ", icon: PencilRuler },
+  { id: "pilot", label: "Pilot", icon: PencilRuler },
+  { id: "circulo", label: "Círculo", icon: Sparkles },
+  { id: "saojose", label: "São José", icon: Sparkles },
+  { id: "pecci", label: "Pecci", icon: Sparkles },
 ];
 
 function ShoppingHome() {
@@ -90,7 +82,7 @@ function ShoppingHome() {
       if (data?.payload?.success) {
         dispatch(fetchCartItems(user?.id)); // Atualiza os itens do carrinho
         toast({
-          title: "Product is added to cart", // Mensagem de sucesso
+          title: "Produto adicionado ao carrinho", // Mensagem de sucesso
         });
       }
     });
@@ -105,7 +97,7 @@ function ShoppingHome() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % featureImageList.length);
-    }, 15000); // Muda o slide a cada 15 segundos
+    }, 10000); // Muda o slide a cada 10 segundos
 
     return () => clearInterval(timer); // Limpa o timer ao desmontar o componente
   }, [featureImageList]);
@@ -172,7 +164,7 @@ function ShoppingHome() {
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">
-            Shop by category
+            Categorias
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {categoriesWithIcon.map((categoryItem) => (
@@ -196,7 +188,7 @@ function ShoppingHome() {
       {/* Seção para marcas */}
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">Shop by Brand</h2>
+          <h2 className="text-3xl font-bold text-center mb-8">Marcas</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {brandsWithIcon.map((brandItem) => (
               <Card
@@ -218,7 +210,7 @@ function ShoppingHome() {
       <section className="py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">
-            Feature Products
+            Produtos em Destaque
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {productList && productList.length > 0

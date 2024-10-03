@@ -44,18 +44,18 @@ function AdminOrdersView() {
   return (
     <Card> {/* Estrutura principal em um cartão */}
       <CardHeader> {/* Cabeçalho do cartão */}
-        <CardTitle>All Orders</CardTitle> {/* Título do cartão */}
+        <CardTitle>Todos os Pedidos</CardTitle> {/* Título do cartão */}
       </CardHeader>
       <CardContent> {/* Conteúdo do cartão */}
         <Table> {/* Tabela para exibir a lista de pedidos */}
           <TableHeader> {/* Cabeçalho da tabela */}
             <TableRow> {/* Linha do cabeçalho */}
-              <TableHead>Order ID</TableHead> {/* Cabeçalho para o ID da ordem */}
-              <TableHead>Order Date</TableHead> {/* Cabeçalho para a data da ordem */}
-              <TableHead>Order Status</TableHead> {/* Cabeçalho para o status da ordem */}
-              <TableHead>Order Price</TableHead> {/* Cabeçalho para o preço total */}
+              <TableHead>ID do Pedido</TableHead> {/* Cabeçalho para o ID da ordem */}
+              <TableHead>Data do Pedido</TableHead> {/* Cabeçalho para a data da ordem */}
+              <TableHead>Status do Pedido</TableHead> {/* Cabeçalho para o status da ordem */}
+              <TableHead>Preço do Pedido</TableHead> {/* Cabeçalho para o preço total */}
               <TableHead>
-                <span className="sr-only">Details</span> {/* Cabeçalho oculto para acessibilidade, referente ao botão de detalhes */}
+                <span className="sr-only">Detalhes</span> {/* Cabeçalho oculto para acessibilidade, referente ao botão de detalhes */}
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -78,7 +78,7 @@ function AdminOrdersView() {
                         {orderItem?.orderStatus}
                       </Badge>
                     </TableCell>
-                    <TableCell>${orderItem?.totalAmount}</TableCell> {/* Célula contendo o preço total da ordem */}
+                    <TableCell>R${orderItem?.totalAmount}</TableCell> {/* Célula contendo o preço total da ordem */}
                     <TableCell> {/* Célula contendo o botão de visualizar detalhes */}
                       <Dialog
                         open={openDetailsDialog} // Controla a abertura do modal
@@ -92,7 +92,7 @@ function AdminOrdersView() {
                             handleFetchOrderDetails(orderItem?._id) // Busca os detalhes da ordem quando o botão for clicado
                           }
                         >
-                          View Details
+                          Ver Detalhes
                         </Button>
                         <AdminOrderDetailsView orderDetails={orderDetails} /> {/* Componente que exibe os detalhes da ordem */}
                       </Dialog>

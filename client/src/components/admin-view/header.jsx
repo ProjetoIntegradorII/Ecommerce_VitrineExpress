@@ -20,7 +20,7 @@ function AdminHeader({ setOpen }) {
       <Button onClick={() => setOpen(true)} className="lg:hidden sm:block">
         {/* Botão para abrir o menu em telas pequenas, visível apenas em telas menores */}
         <AlignJustify /> {/* Ícone para indicar o menu */}
-        <span className="sr-only">Toggle Menu</span> {/* Texto acessível para leitores de tela */}
+        <span className="sr-only">Alternar Menu</span> {/* Texto acessível para leitores de tela */}
       </Button>
 
       <div className="flex flex-1 justify-end">
@@ -31,7 +31,7 @@ function AdminHeader({ setOpen }) {
           // Botão de logout com ícone e texto, estilizado com espaçamento, sombra e alinhamento flexível
         >
           <LogOut /> {/* Ícone de logout */}
-          Logout {/* Texto do botão */}
+          Sair {/* Texto do botão */}
         </Button>
       </div>
     </header>

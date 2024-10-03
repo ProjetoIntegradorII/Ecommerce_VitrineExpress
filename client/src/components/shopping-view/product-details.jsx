@@ -60,7 +60,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
       if (data?.payload?.success) {
         dispatch(fetchCartItems(user?.id)); // Atualiza os itens do carrinho
         toast({
-          title: "Product is added to cart", // Exibe um toast de confirmação
+          title: "O produto adicionado ao carrinho", // Exibe um toast de confirmação
         });
       }
     });
@@ -90,7 +90,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
         setReviewMsg(""); // Reseta a mensagem da revisão
         dispatch(getReviews(productDetails?._id)); // Obtém as revisões atualizadas
         toast({
-          title: "Review added successfully!", // Exibe um toast de confirmação
+          title: "Comentário adicionado com sucesso!", // Exibe um toast de confirmação
         });
       }
     });
@@ -135,11 +135,11 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                 productDetails?.salePrice > 0 ? "line-through" : ""
               }`}
             >
-              ${productDetails?.price} {/* Preço original */}
+              R${productDetails?.price} {/* Preço original */}
             </p>
             {productDetails?.salePrice > 0 ? (
               <p className="text-2xl font-bold text-muted-foreground">
-                ${productDetails?.salePrice} {/* Preço em promoção */}
+                R${productDetails?.salePrice} {/* Preço em promoção */}
               </p>
             ) : null}
           </div>
@@ -154,7 +154,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
           <div className="mt-5 mb-5">
             {productDetails?.totalStock === 0 ? (
               <Button className="w-full opacity-60 cursor-not-allowed">
-                Out of Stock {/* Botão desativado se o produto estiver fora de estoque */}
+                Fora de estoque {/* Botão desativado se o produto estiver fora de estoque */}
               </Button>
             ) : (
               <Button
@@ -166,13 +166,13 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                   )
                 }
               >
-                Add to Cart
+                Adicionar ao Carrinho
               </Button>
             )}
           </div>
           <Separator />
           <div className="max-h-[300px] overflow-auto">
-            <h2 className="text-xl font-bold mb-4">Reviews</h2>
+            <h2 className="text-xl font-bold mb-4">Comentários</h2>
             <div className="grid gap-6">
               {reviews && reviews.length > 0 ? (
                 reviews.map((reviewItem) => (
@@ -196,11 +196,11 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                   </div>
                 ))
               ) : (
-                <h1>No Reviews</h1> // Mensagem caso não haja avaliações
+                <h1>Sem Comentários</h1> // Mensagem caso não haja avaliações
               )}
             </div>
             <div className="mt-10 flex-col flex gap-2">
-              <Label>Write a review</Label> {/* Rótulo para a seção de nova avaliação */}
+              <Label>Avalie o produto</Label> {/* Rótulo para a seção de nova avaliação */}
               <div className="flex gap-1">
                 <StarRatingComponent
                   rating={rating}
@@ -211,13 +211,13 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                 name="reviewMsg"
                 value={reviewMsg}
                 onChange={(event) => setReviewMsg(event.target.value)} // Atualiza a mensagem da revisão
-                placeholder="Write a review..." // Placeholder do input
+                placeholder="Escreva um comentário..." // Placeholder do input
               />
               <Button
                 onClick={handleAddReview}
                 disabled={reviewMsg.trim() === ""} // Desativa o botão se a mensagem estiver vazia
               >
-                Submit
+                Enviar
               </Button>
             </div>
           </div>

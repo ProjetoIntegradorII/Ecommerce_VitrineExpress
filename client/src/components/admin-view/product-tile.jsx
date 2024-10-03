@@ -27,10 +27,10 @@ function AdminProductTile({
                 product?.salePrice > 0 ? "line-through" : "" // Aplica "line-through" se o produto estiver em promoção
               } text-lg font-semibold text-primary`} // Estilo do preço
             >
-              ${product?.price} {/* Exibe o preço original do produto */}
+              R${product?.price} {/* Exibe o preço original do produto */}
             </span>
             {product?.salePrice > 0 ? ( // Se o preço promocional for maior que 0, exibe o preço promocional
-              <span className="text-lg font-bold">${product?.salePrice}</span> // Preço com promoção
+              <span className="text-lg font-bold">R${product?.salePrice}</span> // Preço com promoção
             ) : null}
           </div>
         </CardContent>
@@ -42,9 +42,9 @@ function AdminProductTile({
               setFormData(product); // Preenche o formulário de edição com os dados do produto
             }}
           >
-            Edit {/* Botão para editar o produto */}
+            Editar {/* Botão para editar o produto */}
           </Button>
-          <Button onClick={() => handleDelete(product?._id)}>Delete</Button> {/* Botão para deletar o produto */}
+          <Button onClick={() => handleDelete(product?._id)}>Deletar</Button> {/* Botão para deletar o produto */}
         </CardFooter>
       </div>
     </Card>

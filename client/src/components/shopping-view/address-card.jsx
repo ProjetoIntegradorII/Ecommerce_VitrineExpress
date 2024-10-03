@@ -24,15 +24,15 @@ function AddressCard({
       }`}
     >
       <CardContent className="grid p-4 gap-4"> {/* Conteúdo do cartão com espaçamento */}
-        <Label>Address: {addressInfo?.address}</Label> {/* Rótulo para o endereço */}
-        <Label>City: {addressInfo?.city}</Label> {/* Rótulo para a cidade */}
-        <Label>pincode: {addressInfo?.pincode}</Label> {/* Rótulo para o código postal */}
-        <Label>Phone: {addressInfo?.phone}</Label> {/* Rótulo para o telefone */}
-        <Label>Notes: {addressInfo?.notes}</Label> {/* Rótulo para notas adicionais */}
+        <Label>Endereço: {addressInfo?.address}</Label> {/* Rótulo para o endereço */}
+        <Label>Cidade: {addressInfo?.city}</Label> {/* Rótulo para a cidade */}
+        <Label>CEP: {addressInfo?.pincode}</Label> {/* Rótulo para o código postal */}
+        <Label>Telefone: {addressInfo?.phone}</Label> {/* Rótulo para o telefone */}
+        <Label>Notas: {addressInfo?.notes}</Label> {/* Rótulo para notas adicionais */}
       </CardContent>
       <CardFooter className="p-3 flex justify-between"> {/* Rodapé do cartão com botão de ação */}
-        <Button onClick={() => handleEditAddress(addressInfo)}>Edit</Button> {/* Botão para editar */}
-        <Button onClick={() => handleDeleteAddress(addressInfo)}>Delete</Button> {/* Botão para excluir */}
+        <Button onClick={() => handleEditAddress(addressInfo)}>Editar</Button> {/* Botão para editar */}
+        <Button onClick={() => handleDeleteAddress(addressInfo)}>Deletar</Button> {/* Botão para excluir */}
       </CardFooter>
     </Card>
   );

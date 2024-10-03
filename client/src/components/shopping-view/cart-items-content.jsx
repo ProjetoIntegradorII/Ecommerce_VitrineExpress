@@ -35,7 +35,7 @@ function UserCartItemsContent({ cartItem }) {
           const getQuantity = getCartItems[indexOfCurrentCartItem].quantity; // Obtém a quantidade atual do item
           if (getQuantity + 1 > getTotalStock) {
             toast({
-              title: `Only ${getQuantity} quantity can be added for this item`, // Mensagem de erro
+              title: `Apenas ${getQuantity} podem ser adicionados no carrinho`, // Mensagem de erro
               variant: "destructive",
             });
             return; // Sai da função
@@ -57,7 +57,7 @@ function UserCartItemsContent({ cartItem }) {
     ).then((data) => {
       if (data?.payload?.success) {
         toast({
-          title: "Cart item is updated successfully", // Mensagem de sucesso
+          title: "O item do carrinho foi atualizado com sucesso", // Mensagem de sucesso
         });
       }
     });
@@ -70,22 +70,29 @@ function UserCartItemsContent({ cartItem }) {
     ).then((data) => {
       if (data?.payload?.success) {
         toast({
-          title: "Cart item is deleted successfully", // Mensagem de sucesso
+          title: "O item do carrinho foi excluído com sucesso", // Mensagem de sucesso
         });
       }
     });
   }
 
   return (
-    <div className="flex items-center space-x-4"> {/* Flex container para o item do carrinho */}
+    <div className="flex items-center space-x-4">
+      {" "}
+      {/* Flex container para o item do carrinho */}
       <img
         src={cartItem?.image} // Imagem do item
         alt={cartItem?.title} // Texto alternativo da imagem
         className="w-20 h-20 rounded object-cover" // Estilização da imagem
       />
-      <div className="flex-1"> {/* Flex container para as informações do item */}
-        <h3 className="font-extrabold">{cartItem?.title}</h3> {/* Título do item */}
-        <div className="flex items-center gap-2 mt-1"> {/* Flex container para os botões de quantidade */}
+      <div className="flex-1">
+        {" "}
+        {/* Flex container para as informações do item */}
+        <h3 className="font-extrabold">{cartItem?.title}</h3>{" "}
+        {/* Título do item */}
+        <div className="flex items-center gap-2 mt-1">
+          {" "}
+          {/* Flex container para os botões de quantidade */}
           <Button
             variant="outline"
             className="h-8 w-8 rounded-full" // Estilização do botão
@@ -94,9 +101,11 @@ function UserCartItemsContent({ cartItem }) {
             onClick={() => handleUpdateQuantity(cartItem, "minus")} // Função chamada ao clicar no botão de diminuir
           >
             <Minus className="w-4 h-4" /> {/* Ícone de menos */}
-            <span className="sr-only">Decrease</span> {/* Texto oculto para acessibilidade */}
+            <span className="sr-only">Diminuir</span>{" "}
+            {/* Texto oculto para acessibilidade */}
           </Button>
-          <span className="font-semibold">{cartItem?.quantity}</span> {/* Exibe a quantidade */}
+          <span className="font-semibold">{cartItem?.quantity}</span>{" "}
+          {/* Exibe a quantidade */}
           <Button
             variant="outline"
             className="h-8 w-8 rounded-full" // Estilização do botão
@@ -104,13 +113,21 @@ function UserCartItemsContent({ cartItem }) {
             onClick={() => handleUpdateQuantity(cartItem, "plus")} // Função chamada ao clicar no botão de aumentar
           >
             <Plus className="w-4 h-4" /> {/* Ícone de mais */}
-            <span className="sr-only">Increase</span> {/* Texto oculto para acessibilidade */}
+            <span className="sr-only">Aumentar</span>{" "}
+            {/* Texto oculto para acessibilidade */}
           </Button>
         </div>
       </div>
-      <div className="flex flex-col items-end"> {/* Flex container para exibir preço e botão de deletar */}
+      <div className="flex flex-col items-end">
+        {" "}
+        {/* Flex container para exibir preço e botão de deletar */}
         <p className="font-semibold">
-          ${((cartItem?.salePrice > 0 ? cartItem?.salePrice : cartItem?.price) * cartItem?.quantity).toFixed(2)} {/* Exibe o preço total */}
+          R$
+          {(
+            (cartItem?.salePrice > 0 ? cartItem?.salePrice : cartItem?.price) *
+            cartItem?.quantity
+          ).toFixed(2)}{" "}
+          {/* Exibe o preço total */}
         </p>
         <Trash
           onClick={() => handleCartItemDelete(cartItem)} // Função chamada ao clicar no ícone de deletar

@@ -23,13 +23,13 @@ import {
     },
     {
         id: "products", // Identificador para o item de produtos
-        label: "Products", // Rótulo "Products"
+        label: "Produtos", // Rótulo "Products"
         path: "/admin/products", // Caminho para a página de produtos
         icon: <ShoppingBasket />, // Ícone de cesta de compras para produtos
     },
     {
         id: "orders", // Identificador para o item de pedidos
-        label: "Orders", // Rótulo "Orders"
+        label: "Pedidos", // Rótulo "Orders"
         path: "/admin/orders", // Caminho para a página de pedidos
         icon: <BadgeCheck />, // Ícone de confirmação para pedidos
     },
@@ -70,7 +70,7 @@ import {
                         <SheetHeader className="border-b"> {/* Cabeçalho da barra lateral com borda inferior */}
                             <SheetTitle className="flex gap-2 mt-5 mb-5"> {/* Título do painel com margens superior e inferior */}
                                 <ChartNoAxesCombined size={30} /> {/* Ícone do painel administrativo */}
-                                <h1 className="text-2xl font-extrabold">Admin Panel</h1> {/* Texto do título com fonte em negrito */}
+                                <h1 className="text-2xl font-extrabold">Painel Admin</h1> {/* Texto do título com fonte em negrito */}
                             </SheetTitle>
                         </SheetHeader>
                         <MenuItems setOpen={setOpen} /> {/* Renderiza os itens do menu */}
@@ -84,7 +84,7 @@ import {
                     className="flex cursor-pointer items-center gap-2"
                 >
                     <ChartNoAxesCombined size={30} /> {/* Ícone do painel */}
-                    <h1 className="text-2xl font-extrabold">Admin Panel</h1> {/* Título do painel */}
+                    <h1 className="text-2xl font-extrabold">Painel Admin</h1> {/* Título do painel */}
                 </div>
                 <MenuItems /> {/* Renderiza os itens do menu na barra lateral fixa */}
             </aside>

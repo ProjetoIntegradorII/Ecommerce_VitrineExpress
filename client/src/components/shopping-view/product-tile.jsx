@@ -19,15 +19,15 @@ function ShoppingProductTile({
           />
           {product?.totalStock === 0 ? ( // Verifica se o produto está fora de estoque
             <Badge className="absolute top-2 left-2 bg-red-500 hover:bg-red-600">
-              Out Of Stock {/* Etiqueta para produto fora de estoque */}
+              Fora de estoque {/* Etiqueta para produto fora de estoque */}
             </Badge>
           ) : product?.totalStock < 10 ? ( // Verifica se o estoque é baixo
             <Badge className="absolute top-2 left-2 bg-red-500 hover:bg-red-600">
-              {`Only ${product?.totalStock} items left`} {/* Etiqueta para estoque baixo */}
+              {`Restam ${product?.totalStock} itens`} {/* Etiqueta para estoque baixo */}
             </Badge>
           ) : product?.salePrice > 0 ? ( // Verifica se o produto está em promoção
             <Badge className="absolute top-2 left-2 bg-red-500 hover:bg-red-600">
-              Sale {/* Etiqueta para produtos em promoção */}
+              Promoção {/* Etiqueta para produtos em promoção */}
             </Badge>
           ) : null}
         </div>
@@ -47,11 +47,11 @@ function ShoppingProductTile({
                 product?.salePrice > 0 ? "line-through" : "" // Aplica o estilo de linha cruzada se houver preço de venda
               } text-lg font-semibold text-primary`}
             >
-              ${product?.price} {/* Preço original do produto */}
+              R${product?.price} {/* Preço original do produto */}
             </span>
             {product?.salePrice > 0 ? ( // Se houver um preço de venda, exibe o preço em promoção
               <span className="text-lg font-semibold text-primary">
-                ${product?.salePrice}
+                R${product?.salePrice}
               </span>
             ) : null}
           </div>
@@ -60,14 +60,14 @@ function ShoppingProductTile({
       <CardFooter> {/* Rodapé do cartão */}
         {product?.totalStock === 0 ? ( // Se o produto estiver fora de estoque
           <Button className="w-full opacity-60 cursor-not-allowed">
-            Out Of Stock {/* Botão desativado */}
+            Fora de estoque {/* Botão desativado */}
           </Button>
         ) : (
           <Button
             onClick={() => handleAddtoCart(product?._id, product?.totalStock)} // Chama a função para adicionar ao carrinho
             className="w-full"
           >
-            Add to cart {/* Botão para adicionar ao carrinho */}
+            Adicionar {/* Botão para adicionar ao carrinho */}
           </Button>
         )}
       </CardFooter>

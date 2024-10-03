@@ -92,7 +92,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
       if (data?.payload?.success) {
         dispatch(fetchAllAddresses(user?.id)); // Atualiza a lista de endereços
         toast({
-          title: "Address deleted successfully", // Mensagem de sucesso
+          title: "Endereço excluído com sucesso", // Mensagem de sucesso
         });
       }
     });
@@ -145,7 +145,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
       <CardHeader>
         <CardTitle>
           {/* Título do formulário dependendo se está editando ou adicionando */}
-          {currentEditedId !== null ? "Edit Address" : "Add New Address"}
+          {currentEditedId !== null ? "Editar endereço" : "Adicionar novo endereço"}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
@@ -153,7 +153,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
           formControls={addressFormControls} // Controles do formulário
           formData={formData} // Dados do formulário
           setFormData={setFormData} // Função para atualizar os dados do formulário
-          buttonText={currentEditedId !== null ? "Edit" : "Add"} // Texto do botão dependendo da ação
+          buttonText={currentEditedId !== null ? "Editar" : "Adicionar"} // Texto do botão dependendo da ação
           onSubmit={handleManageAddress} // Função a ser chamada ao enviar o formulário
           isBtnDisabled={!isFormValid()} // Desabilita o botão se o formulário não for válido
         />

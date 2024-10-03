@@ -53,32 +53,32 @@ function AdminOrderDetailsView({ orderDetails }) {
         <div className="grid gap-2">
           {/* ID da ordem */}
           <div className="flex mt-6 items-center justify-between">
-            <p className="font-medium">Order ID</p>
+            <p className="font-medium">ID do Pedido</p>
             <Label>{orderDetails?._id}</Label> {/* Exibe o ID da ordem */}
           </div>
           {/* Data da ordem */}
           <div className="flex mt-2 items-center justify-between">
-            <p className="font-medium">Order Date</p>
+            <p className="font-medium">Data do Pedido</p>
             <Label>{orderDetails?.orderDate.split("T")[0]}</Label> {/* Exibe a data da ordem */}
           </div>
           {/* Preço total da ordem */}
           <div className="flex mt-2 items-center justify-between">
-            <p className="font-medium">Order Price</p>
+            <p className="font-medium">Preço do Pedido</p>
             <Label>${orderDetails?.totalAmount}</Label> {/* Exibe o valor total da ordem */}
           </div>
           {/* Método de pagamento */}
           <div className="flex mt-2 items-center justify-between">
-            <p className="font-medium">Payment method</p>
+            <p className="font-medium">Método de Pagamento</p>
             <Label>{orderDetails?.paymentMethod}</Label> {/* Exibe o método de pagamento */}
           </div>
           {/* Status de pagamento */}
           <div className="flex mt-2 items-center justify-between">
-            <p className="font-medium">Payment Status</p>
+            <p className="font-medium">Status do Pagamento</p>
             <Label>{orderDetails?.paymentStatus}</Label> {/* Exibe o status de pagamento */}
           </div>
           {/* Status da ordem */}
           <div className="flex mt-2 items-center justify-between">
-            <p className="font-medium">Order Status</p>
+            <p className="font-medium">Status do Pedido</p>
             <Label>
               {/* Exibe o status da ordem com estilos visuais diferentes dependendo do status */}
               <Badge
@@ -101,15 +101,15 @@ function AdminOrderDetailsView({ orderDetails }) {
         {/* Detalhes da ordem */}
         <div className="grid gap-4">
           <div className="grid gap-2">
-            <div className="font-medium">Order Details</div>
+            <div className="font-medium">Detalhes do Pedido</div>
             <ul className="grid gap-3">
               {/* Lista os itens do carrinho associados à ordem */}
               {orderDetails?.cartItems && orderDetails?.cartItems.length > 0
                 ? orderDetails?.cartItems.map((item) => (
                     <li className="flex items-center justify-between">
-                      <span>Title: {item.title}</span> {/* Título do produto */}
-                      <span>Quantity: {item.quantity}</span> {/* Quantidade */}
-                      <span>Price: ${item.price}</span> {/* Preço */}
+                      <span>Título: {item.title}</span> {/* Título do produto */}
+                      <span>Quantidade: {item.quantity}</span> {/* Quantidade */}
+                      <span>Preço: R${item.price}</span> {/* Preço */}
                     </li>
                   ))
                 : null}
@@ -120,7 +120,7 @@ function AdminOrderDetailsView({ orderDetails }) {
         {/* Informações de envio */}
         <div className="grid gap-4">
           <div className="grid gap-2">
-            <div className="font-medium">Shipping Info</div>
+            <div className="font-medium">Informações de Envio</div>
             <div className="grid gap-0.5 text-muted-foreground">
               {/* Exibe as informações de envio associadas à ordem */}
               <span>{user.userName}</span> {/* Nome do usuário */}
@@ -138,21 +138,21 @@ function AdminOrderDetailsView({ orderDetails }) {
           <CommonForm
             formControls={[
               {
-                label: "Order Status", // Rótulo do campo
+                label: "Status do Pedido", // Rótulo do campo
                 name: "status", // Nome do campo
                 componentType: "select", // Tipo do componente (select)
                 options: [
-                  { id: "pending", label: "Pending" }, // Opção "Pending"
-                  { id: "inProcess", label: "In Process" }, // Opção "In Process"
-                  { id: "inShipping", label: "In Shipping" }, // Opção "In Shipping"
-                  { id: "delivered", label: "Delivered" }, // Opção "Delivered"
-                  { id: "rejected", label: "Rejected" }, // Opção "Rejected"
+                  { id: "pending", label: "Pendente" }, // Opção "Pending"
+                  { id: "inProcess", label: "Em processo" }, // Opção "In Process"
+                  { id: "inShipping", label: "Enviado" }, // Opção "In Shipping"
+                  { id: "delivered", label: "Entregue" }, // Opção "Delivered"
+                  { id: "rejected", label: "Rejeitado" }, // Opção "Rejected"
                 ],
               },
             ]}
             formData={formData} // Estado do formulário
             setFormData={setFormData} // Função para atualizar o estado do formulário
-            buttonText={"Update Order Status"} // Texto do botão
+            buttonText={"Atualizar Status do Pedido"} // Texto do botão
             onSubmit={handleUpdateStatus} // Função chamada ao enviar o formulário
           />
         </div>

@@ -48,7 +48,7 @@ function SearchProducts() {
         const getQuantity = getCartItems[indexOfCurrentItem].quantity;
         if (getQuantity + 1 > getTotalStock) {
           toast({
-            title: `Only ${getQuantity} quantity can be added for this item`,
+            title: `Apenas ${getQuantity} pode ser adicionadas ao carrinho`,
             variant: "destructive",
           });
           return;
@@ -66,7 +66,7 @@ function SearchProducts() {
       if (data?.payload?.success) {
         dispatch(fetchCartItems(user?.id));
         toast({
-          title: "Product is added to cart",
+          title: "O produto adicionado ao carrinho",
         });
       }
     });
@@ -91,12 +91,12 @@ function SearchProducts() {
             name="keyword"
             onChange={(event) => setKeyword(event.target.value)} // Atualiza a palavra-chave com base na entrada do usuário
             className="py-6"
-            placeholder="Search Products..."
+            placeholder="Pesquisar produtos..."
           />
         </div>
       </div>
       {!searchResults.length ? (
-        <h1 className="text-5xl font-extrabold">No result found!</h1>
+        <h1 className="text-5xl font-extrabold">Nenhum resultado encontrado!</h1>
       ) : null}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {searchResults.map((item) => (

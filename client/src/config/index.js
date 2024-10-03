@@ -2,22 +2,22 @@
 export const registerFormControls = [
   {
     name: "userName", // Nome do campo
-    label: "User Name", // Rótulo a ser exibido
-    placeholder: "Enter your user name", // Placeholder do campo
+    label: "Nome de usuário", // Rótulo a ser exibido
+    placeholder: "Digite seu nome de usuário", // Placeholder do campo
     componentType: "input", // Tipo de componente a ser renderizado
     type: "text", // Tipo de entrada
   },
   {
     name: "email",
     label: "Email",
-    placeholder: "Enter your email",
+    placeholder: "Entre com seu email",
     componentType: "input",
     type: "email",
   },
   {
     name: "password",
-    label: "Password",
-    placeholder: "Enter your password",
+    label: "Senha",
+    placeholder: "Entre com sua senha",
     componentType: "input",
     type: "password",
   },
@@ -28,14 +28,14 @@ export const loginFormControls = [
   {
     name: "email",
     label: "Email",
-    placeholder: "Enter your email",
+    placeholder: "Entre com seu email",
     componentType: "input",
     type: "email",
   },
   {
     name: "password",
     label: "Password",
-    placeholder: "Enter your password",
+    placeholder: "Entre com sua senha",
     componentType: "input",
     type: "password",
   },
@@ -44,63 +44,62 @@ export const loginFormControls = [
 // Estrutura de dados para os campos do formulário de adição de produto
 export const addProductFormElements = [
   {
-    label: "Title", // Rótulo do campo
+    label: "Titulo", // Rótulo do campo
     name: "title", // Nome do campo
     componentType: "input", // Tipo de componente a ser renderizado
     type: "text", // Tipo de entrada
-    placeholder: "Enter product title", // Placeholder do campo
+    placeholder: "Insira o título do produto", // Placeholder do campo
   },
   {
-    label: "Description",
+    label: "Descrição",
     name: "description",
     componentType: "textarea", // Campo de texto
-    placeholder: "Enter product description",
+    placeholder: "Insira a descrição do produto",
   },
   {
-    label: "Category",
+    label: "Categoria",
     name: "category",
     componentType: "select", // Campo de seleção
     options: [ // Opções disponíveis para seleção
-      { id: "men", label: "Men" },
-      { id: "women", label: "Women" },
-      { id: "kids", label: "Kids" },
-      { id: "accessories", label: "Accessories" },
-      { id: "footwear", label: "Footwear" },
+      { id: "papelaria", label: "Papelaria" },
+      { id: "aviamento", label: "Aviamento" },
+      { id: "outros", label: "Outros" },
     ],
   },
   {
-    label: "Brand",
+    label: "Marca",
     name: "brand",
     componentType: "select",
     options: [
-      { id: "nike", label: "Nike" },
-      { id: "adidas", label: "Adidas" },
-      { id: "puma", label: "Puma" },
-      { id: "levi", label: "Levi's" },
-      { id: "zara", label: "Zara" },
-      { id: "h&m", label: "H&M" },
+      { id: "fabercastell", label: "Faber-Castell" },
+      { id: "tilibra", label: "Tilibra" },
+      { id: "pilot", label: "Pilot" },
+      { id: "circulo", label: "Círculo" },
+      { id: "saojose", label: "São José" },
+      { id: "pecci", label: "Pecci" },
+      { id: "outro", label: "Outros" },
     ],
   },
   {
-    label: "Price",
+    label: "Preço",
     name: "price",
     componentType: "input",
     type: "number", // Tipo numérico para preço
-    placeholder: "Enter product price",
+    placeholder: "Insira o preço do produto",
   },
   {
-    label: "Sale Price",
+    label: "Promoção",
     name: "salePrice",
     componentType: "input",
     type: "number",
-    placeholder: "Enter sale price (optional)",
+    placeholder: "Insira o preço de venda na promoção",
   },
   {
-    label: "Total Stock",
+    label: "Total em Estoque",
     name: "totalStock",
     componentType: "input",
     type: "number",
-    placeholder: "Enter total stock", // Placeholder para estoque
+    placeholder: "Insira o estoque total", // Placeholder para estoque
   },
 ];
 
@@ -113,121 +112,114 @@ export const shoppingViewHeaderMenuItems = [
   },
   {
     id: "products",
-    label: "Products",
+    label: "Produtos",
     path: "/shop/listing", // Caminho para a lista de produtos
   },
   {
-    id: "men",
-    label: "Men",
+    id: "papelaria",
+    label: "Papelaria",
     path: "/shop/listing", // Caminho para a categoria de homens
   },
   {
-    id: "women",
-    label: "Women",
+    id: "aviamento",
+    label: "Aviamento",
     path: "/shop/listing", // Caminho para a categoria de mulheres
   },
   {
-    id: "kids",
-    label: "Kids",
+    id: "outros",
+    label: "Outros",
     path: "/shop/listing", // Caminho para a categoria de crianças
   },
   {
-    id: "footwear",
-    label: "Footwear",
-    path: "/shop/listing", // Caminho para a categoria de calçados
-  },
-  {
-    id: "accessories",
-    label: "Accessories",
-    path: "/shop/listing", // Caminho para a categoria de acessórios
-  },
-  {
     id: "search",
-    label: "Search",
+    label: "Pesquisar",
     path: "/shop/search", // Caminho para a pesquisa
+  },
+  {
+    id: "sabout",
+    label: "Sobre",
+    path: "/shop/about", // Caminho para o sobre
   },
 ];
 
 // Mapeia categorias para seus rótulos
 export const categoryOptionsMap = {
-  men: "Men",
-  women: "Women",
-  kids: "Kids",
-  accessories: "Accessories",
-  footwear: "Footwear",
+  papelaria: "Papelaria",
+  aviamento: "Aviamento",
+  outros: "Outros",
 };
 
 // Mapeia marcas para seus rótulos
 export const brandOptionsMap = {
-  nike: "Nike",
-  adidas: "Adidas",
-  puma: "Puma",
-  levi: "Levi",
-  zara: "Zara",
-  "h&m": "H&M",
+  fabercastell: "Faber-Castell",
+  tilibra: "Tilibra",
+  pilot: "Pilot",
+  circulo: "Círculo",
+  saojose: "São José",
+  pecci: "Pecci",
+  outro: "Outros",
 };
 
 // Opções de filtro para categorias e marcas
 export const filterOptions = {
   category: [
-    { id: "men", label: "Men" },
-    { id: "women", label: "Women" },
-    { id: "kids", label: "Kids" },
-    { id: "accessories", label: "Accessories" },
-    { id: "footwear", label: "Footwear" },
+    { id: "papelaria", label: "Papelaria" },
+    { id: "aviamento", label: "Aviamento" },
+    { id: "outros", label: "Outros" },
   ],
   brand: [
-    { id: "nike", label: "Nike" },
-    { id: "adidas", label: "Adidas" },
-    { id: "puma", label: "Puma" },
-    { id: "levi", label: "Levi's" },
-    { id: "zara", label: "Zara" },
-    { id: "h&m", label: "H&M" },
+    { id: "fabercastell", label: "Faber-Castell" },
+    { id: "tilibra", label: "Tilibra " },
+    { id: "pilot", label: "Pilot" },
+    { id: "circulo", label: "Círculo" },
+    { id: "saojose", label: "São José" },
+    { id: "pecci", label: "Pecci" },
+    { id: "outro", label: "Outros" },
   ],
 };
 
 // Opções de classificação de produtos
 export const sortOptions = [
-  { id: "price-lowtohigh", label: "Price: Low to High" },
-  { id: "price-hightolow", label: "Price: High to Low" },
-  { id: "title-atoz", label: "Title: A to Z" },
-  { id: "title-ztoa", label: "Title: Z to A" },
+  { id: "price-lowtohigh", label: "Preço: Menor" },
+  { id: "price-hightolow", label: "Preço: Maior" },
+  { id: "title-atoz", label: "Titulo: A a Z" },
+  { id: "title-ztoa", label: "Titulo: Z a A" },
 ];
 
 // Estrutura de dados para os campos do formulário de endereço
 export const addressFormControls = [
   {
-    label: "Address",
+    label: "Endereço",
     name: "address",
     componentType: "input",
     type: "text",
-    placeholder: "Enter your address", // Placeholder para endereço
+    placeholder: "Digite seu endereço", // Placeholder para endereço
   },
   {
-    label: "City",
+    label: "Cidade",
     name: "city",
     componentType: "input",
     type: "text",
-    placeholder: "Enter your city", // Placeholder para cidade
+    placeholder: "Digite sua cidade", // Placeholder para cidade
   },
   {
-    label: "Pincode",
+    label: "CEP",
     name: "pincode",
     componentType: "input",
     type: "text",
-    placeholder: "Enter your pincode", // Placeholder para código postal
+    placeholder: "Digite seu CEP", // Placeholder para código postal
   },
   {
-    label: "Phone",
+    label: "Telefone",
     name: "phone",
     componentType: "input",
     type: "text",
-    placeholder: "Enter your phone number", // Placeholder para telefone
+    placeholder: "Digite seu número de telefone", // Placeholder para telefone
   },
   {
-    label: "Notes",
+    label: "Notas",
     name: "notes",
     componentType: "textarea", // Campo de texto
-    placeholder: "Enter any additional notes", // Placeholder para notas adicionais
+    placeholder: "Notas adicionais", // Placeholder para notas adicionais
   },
 ];

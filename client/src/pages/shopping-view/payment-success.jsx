@@ -8,10 +8,11 @@ function PaymentSuccessPage() {
   return (
     <Card className="p-10"> {/* Cartão com preenchimento de 10 */}
       <CardHeader className="p-0"> {/* Cabeçalho do cartão sem preenchimento */}
-        <CardTitle className="text-4xl">Payment is successful!</CardTitle> {/* Título do cartão */}
+        <CardTitle className="text-4xl">
+        O pagamento foi realizado com sucesso!</CardTitle> {/* Título do cartão */}
       </CardHeader>
       <Button className="mt-5" onClick={() => navigate("/shop/account")}> {/* Botão para navegar para a página de pedidos */}
-        View Orders
+        Detalhes do Pedido
       </Button>
     </Card>
   );

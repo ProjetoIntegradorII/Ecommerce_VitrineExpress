@@ -79,7 +79,7 @@ function AdminProducts() {
             setImageFile(null);
             setFormData(initialFormData);
             toast({
-              title: "Product added successfully",
+              title: "Produto adicionado com sucesso",
             });
           }
         });
@@ -113,7 +113,7 @@ function AdminProducts() {
     <Fragment>
       <div className="mb-5 w-full flex justify-end">
         <Button onClick={() => setOpenCreateProductsDialog(true)}> {/* Botão para abrir o diálogo de adição de produtos */}
-          Add New Product
+          Adicionar Novo Produto
         </Button>
       </div>
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
@@ -140,7 +140,7 @@ function AdminProducts() {
         <SheetContent side="right" className="overflow-auto">
           <SheetHeader>
             <SheetTitle>
-              {currentEditedId !== null ? "Edit Product" : "Add New Product"} {/* Título do diálogo */}
+              {currentEditedId !== null ? "Editar Produto" : "Adicionar Novo Produto"} {/* Título do diálogo */}
             </SheetTitle>
           </SheetHeader>
           <ProductImageUpload
@@ -157,7 +157,7 @@ function AdminProducts() {
               onSubmit={onSubmit} // Passa a função de envio do formulário
               formData={formData} // Passa os dados do formulário
               setFormData={setFormData} // Passa a função para atualizar os dados do formulário
-              buttonText={currentEditedId !== null ? "Edit" : "Add"} // Define o texto do botão com base no modo de edição
+              buttonText={currentEditedId !== null ? "Editar" : "Adicionar"} // Define o texto do botão com base no modo de edição
               formControls={addProductFormElements} // Passa os controles do formulário
               isBtnDisabled={!isFormValid()} // Desabilita o botão se o formulário não for válido
             />

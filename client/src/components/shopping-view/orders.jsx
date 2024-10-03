@@ -42,18 +42,18 @@ function ShoppingOrders() {
   return (
     <Card> {/* Componente de card que envolve a tabela de pedidos */}
       <CardHeader>
-        <CardTitle>Order History</CardTitle> {/* Título do histórico de pedidos */}
+        <CardTitle>Histórico de Pedidos</CardTitle> {/* Título do histórico de pedidos */}
       </CardHeader>
       <CardContent>
         <Table> {/* Componente de tabela para exibir a lista de pedidos */}
           <TableHeader>
             <TableRow>
-              <TableHead>Order ID</TableHead> {/* Cabeçalho da tabela para ID do pedido */}
-              <TableHead>Order Date</TableHead> {/* Cabeçalho da tabela para data do pedido */}
-              <TableHead>Order Status</TableHead> {/* Cabeçalho da tabela para status do pedido */}
-              <TableHead>Order Price</TableHead> {/* Cabeçalho da tabela para preço do pedido */}
+              <TableHead>ID do Pedido</TableHead> {/* Cabeçalho da tabela para ID do pedido */}
+              <TableHead>Data do Pedido</TableHead> {/* Cabeçalho da tabela para data do pedido */}
+              <TableHead>Status do Pedido</TableHead> {/* Cabeçalho da tabela para status do pedido */}
+              <TableHead>Preço do Pedido</TableHead> {/* Cabeçalho da tabela para preço do pedido */}
               <TableHead>
-                <span className="sr-only">Details</span> {/* Acessibilidade: título para detalhes */}
+                <span className="sr-only">Detalhes</span> {/* Acessibilidade: título para detalhes */}
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -76,7 +76,7 @@ function ShoppingOrders() {
                         {orderItem?.orderStatus} {/* Exibe status do pedido com um badge */}
                       </Badge>
                     </TableCell>
-                    <TableCell>${orderItem?.totalAmount}</TableCell> {/* Exibe preço total do pedido */}
+                    <TableCell>R${orderItem?.totalAmount}</TableCell> {/* Exibe preço total do pedido */}
                     <TableCell>
                       <Dialog
                         open={openDetailsDialog}
@@ -90,7 +90,7 @@ function ShoppingOrders() {
                             handleFetchOrderDetails(orderItem?._id) // Obtém detalhes do pedido ao clicar no botão
                           }
                         >
-                          View Details
+                          Ver Detalhes
                         </Button>
                         <ShoppingOrderDetailsView orderDetails={orderDetails} /> {/* Componente para exibir detalhes do pedido */}
                       </Dialog>
