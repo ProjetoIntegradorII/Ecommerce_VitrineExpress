@@ -72,6 +72,16 @@ function ShoppingHome() {
 
   // Adiciona um produto ao carrinho
   function handleAddtoCart(getCurrentProductId) {
+    // Verifica se o usuário está logado
+    if (!user) {
+      toast({
+        title: "Você precisa estar logado para adicionar produtos ao carrinho.", // Mensagem de erro
+        variant: "destructive",
+      });
+      return; // Retorna sem fazer nada se o usuário não estiver logado
+    }
+  
+    // Se o usuário estiver logado, prossegue com a adição ao carrinho
     dispatch(
       addToCart({
         userId: user?.id,

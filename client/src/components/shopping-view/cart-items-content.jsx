@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast"; // Importa o hook de notificação
 
 // Componente que exibe os itens do carrinho do usuário
 function UserCartItemsContent({ cartItem }) {
-  const { user } = useSelector((state) => state.auth); // Obtém informações do usuário autenticado
+  const { user, isAuthenticated } = useSelector((state) => state.auth); // Obtém informações do usuário e se está autenticado
   const { cartItems } = useSelector((state) => state.shopCart); // Obtém itens do carrinho do Redux
   const { productList } = useSelector((state) => state.shopProducts); // Obtém a lista de produtos do Redux
   const dispatch = useDispatch(); // Hook para despachar ações do Redux
@@ -14,8 +14,16 @@ function UserCartItemsContent({ cartItem }) {
 
   // Função para atualizar a quantidade de um item no carrinho
   function handleUpdateQuantity(getCartItem, typeOfAction) {
+    if (!isAuthenticated) {
+      toast({
+        title: "Você precisa fazer login para adicionar itens ao carrinho", // Mensagem de aviso
+        variant: "destructive",
+      });
+      return; // Sai da função se não estiver autenticado
+    }
+
     // Se a ação for para incrementar
-    if (typeOfAction == "plus") {
+    if (typeOfAction === "plus") {
       let getCartItems = cartItems.items || []; // Obtém itens do carrinho
 
       if (getCartItems.length) {
@@ -78,7 +86,6 @@ function UserCartItemsContent({ cartItem }) {
 
   return (
     <div className="flex items-center space-x-4">
-      {" "}
       {/* Flex container para o item do carrinho */}
       <img
         src={cartItem?.image} // Imagem do item
@@ -86,12 +93,10 @@ function UserCartItemsContent({ cartItem }) {
         className="w-20 h-20 rounded object-cover" // Estilização da imagem
       />
       <div className="flex-1">
-        {" "}
         {/* Flex container para as informações do item */}
-        <h3 className="font-extrabold">{cartItem?.title}</h3>{" "}
+        <h3 className="font-extrabold">{cartItem?.title}</h3>
         {/* Título do item */}
         <div className="flex items-center gap-2 mt-1">
-          {" "}
           {/* Flex container para os botões de quantidade */}
           <Button
             variant="outline"
@@ -101,10 +106,10 @@ function UserCartItemsContent({ cartItem }) {
             onClick={() => handleUpdateQuantity(cartItem, "minus")} // Função chamada ao clicar no botão de diminuir
           >
             <Minus className="w-4 h-4" /> {/* Ícone de menos */}
-            <span className="sr-only">Diminuir</span>{" "}
+            <span className="sr-only">Diminuir</span>
             {/* Texto oculto para acessibilidade */}
           </Button>
-          <span className="font-semibold">{cartItem?.quantity}</span>{" "}
+          <span className="font-semibold">{cartItem?.quantity}</span>
           {/* Exibe a quantidade */}
           <Button
             variant="outline"
@@ -113,20 +118,19 @@ function UserCartItemsContent({ cartItem }) {
             onClick={() => handleUpdateQuantity(cartItem, "plus")} // Função chamada ao clicar no botão de aumentar
           >
             <Plus className="w-4 h-4" /> {/* Ícone de mais */}
-            <span className="sr-only">Aumentar</span>{" "}
+            <span className="sr-only">Aumentar</span>
             {/* Texto oculto para acessibilidade */}
           </Button>
         </div>
       </div>
       <div className="flex flex-col items-end">
-        {" "}
         {/* Flex container para exibir preço e botão de deletar */}
         <p className="font-semibold">
           R$
           {(
             (cartItem?.salePrice > 0 ? cartItem?.salePrice : cartItem?.price) *
             cartItem?.quantity
-          ).toFixed(2)}{" "}
+          ).toFixed(2)}
           {/* Exibe o preço total */}
         </p>
         <Trash

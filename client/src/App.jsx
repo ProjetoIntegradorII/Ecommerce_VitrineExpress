@@ -1,6 +1,4 @@
-// Importa os componentes necessários do React Router
-import { Route, Routes } from "react-router-dom";
-// Importa layouts e páginas para diferentes seções da aplicação
+import { Route, Routes, Navigate } from "react-router-dom";
 import AuthLayout from "./components/auth/layout";
 import AuthLogin from "./pages/auth/login";
 import AuthRegister from "./pages/auth/register";
@@ -15,58 +13,38 @@ import ShoppingHome from "./pages/shopping-view/home";
 import ShoppingListing from "./pages/shopping-view/listing";
 import ShoppingCheckout from "./pages/shopping-view/checkout";
 import ShoppingAccount from "./pages/shopping-view/account";
-import CheckAuth from "./components/common/check-auth"; // Componente para verificar autenticação
+import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth-page";
-import { useDispatch, useSelector } from "react-redux"; // Hooks do Redux
-import { useEffect } from "react"; // Hook para efeitos colaterais
-import { checkAuth } from "./store/auth-slice"; // Ação para verificar autenticação
-import { Skeleton } from "@/components/ui/skeleton"; // Componente de carregamento
-import PaypalReturnPage from "./pages/shopping-view/paypal-return"; // Página de retorno do PayPal
-import PaymentSuccessPage from "./pages/shopping-view/payment-success"; // Página de sucesso de pagamento
-import SearchProducts from "./pages/shopping-view/search"; // Página de busca de produtos
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { checkAuth } from "./store/auth-slice";
+import { Skeleton } from "@/components/ui/skeleton";
+import PaypalReturnPage from "./pages/shopping-view/paypal-return";
+import PaymentSuccessPage from "./pages/shopping-view/payment-success";
+import SearchProducts from "./pages/shopping-view/search";
 
 function App() {
-  // Obtém o estado de autenticação do Redux
-  const { user, isAuthenticated, isLoading } = useSelector(
-    (state) => state.auth
-  );
+  const { user, isAuthenticated, isLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  // Efeito para verificar a autenticação ao montar o componente
   useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);
 
-  // Exibe um esqueleto de carregamento enquanto a autenticação está sendo verificada
-  if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
-
-  console.log(isLoading, user); // Log de depuração
+  if (isLoading) return <Skeleton className="w-[800px] bg-black h-[600px]" />;
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
-        {/* Rota principal */}
-        <Route
-          path="/"
-          element={
-            <CheckAuth
-              isAuthenticated={isAuthenticated}
-              user={user}
-            ></CheckAuth>
-          }
-        />
+        {/* Página inicial redireciona para "Home" */}
+        <Route path="/" element={<Navigate to="/shop/home" />} />
+
         {/* Rotas de autenticação */}
-        <Route
-          path="/auth"
-          element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-              <AuthLayout />
-            </CheckAuth>
-          }
-        >
+        <Route path="/auth" element={<AuthLayout />}>
           <Route path="login" element={<AuthLogin />} />
           <Route path="register" element={<AuthRegister />} />
         </Route>
+
         {/* Rotas do administrador */}
         <Route
           path="/admin"
@@ -81,26 +59,43 @@ function App() {
           <Route path="orders" element={<AdminOrders />} />
           <Route path="features" element={<AdminFeatures />} />
         </Route>
-        {/* Rotas da loja */}
-        <Route
-          path="/shop"
-          element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-              <ShoppingLayout />
-            </CheckAuth>
-          }
-        >
+
+        {/* Páginas públicas da loja */}
+        <Route path="/shop" element={<ShoppingLayout />}>
           <Route path="home" element={<ShoppingHome />} />
           <Route path="listing" element={<ShoppingListing />} />
-          <Route path="checkout" element={<ShoppingCheckout />} />
-          <Route path="account" element={<ShoppingAccount />} />
-          <Route path="paypal-return" element={<PaypalReturnPage />} />
-          <Route path="payment-success" element={<PaymentSuccessPage />} />
           <Route path="search" element={<SearchProducts />} />
         </Route>
-        {/* Rota para página não autenticada */}
+
+        {/* Rotas privadas da loja */}
+        <Route
+          path="/shop"
+          element={<ShoppingLayout />} // ShoppingLayout aplicado para todas as rotas da loja
+        >
+          <Route
+            path="checkout"
+            element={
+              <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+                <ShoppingCheckout />
+              </CheckAuth>
+            }
+          />
+          <Route
+            path="account"
+            element={
+              <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+                <ShoppingAccount />
+              </CheckAuth>
+            }
+          />
+          <Route path="paypal-return" element={<PaypalReturnPage />} />
+          <Route path="payment-success" element={<PaymentSuccessPage />} />
+        </Route>
+
+        {/* Página para usuários não autorizados */}
         <Route path="/unauth-page" element={<UnauthPage />} />
-        {/* Rota para páginas não encontradas */}
+
+        {/* Página não encontrada */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

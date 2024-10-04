@@ -36,25 +36,34 @@ function SearchProducts() {
     }
   }, [keyword]);
 
-  // Função para adicionar produtos ao carrinho
-  function handleAddtoCart(getCurrentProductId, getTotalStock) {
-    let getCartItems = cartItems.items || [];
+// Função para adicionar produtos ao carrinho
+function handleAddtoCart(getCurrentProductId, getTotalStock) {
+  // Verifica se o usuário está logado
+  if (!user) {
+    toast({
+      title: "Por favor, faça login para adicionar itens ao carrinho", // Mensagem solicitando login
+      variant: "destructive",
+    });
+    return; // Retorna se o usuário não estiver logado
+  }
 
-    if (getCartItems.length) {
-      const indexOfCurrentItem = getCartItems.findIndex(
-        (item) => item.productId === getCurrentProductId
-      );
-      if (indexOfCurrentItem > -1) {
-        const getQuantity = getCartItems[indexOfCurrentItem].quantity;
-        if (getQuantity + 1 > getTotalStock) {
-          toast({
-            title: `Apenas ${getQuantity} pode ser adicionadas ao carrinho`,
-            variant: "destructive",
-          });
-          return;
-        }
+  let getCartItems = cartItems.items || [];
+
+  if (getCartItems.length) {
+    const indexOfCurrentItem = getCartItems.findIndex(
+      (item) => item.productId === getCurrentProductId
+    );
+    if (indexOfCurrentItem > -1) {
+      const getQuantity = getCartItems[indexOfCurrentItem].quantity;
+      if (getQuantity + 1 > getTotalStock) {
+        toast({
+          title: `Apenas ${getQuantity} pode ser adicionadas ao carrinho`, // Mensagem informando limite de quantidade
+          variant: "destructive",
+        });
+        return;
       }
     }
+  }
 
     dispatch(
       addToCart({

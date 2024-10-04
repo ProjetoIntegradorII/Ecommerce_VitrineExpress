@@ -1,8 +1,8 @@
 import CommonForm from "@/components/common/form"; // Importa um componente de formulário reutilizável
 import { loginFormControls } from "@/config"; // Importa os controles do formulário de login (campos e configurações)
-import { useState } from "react"; // Importa o hook useState do React
-import { Link } from "react-router-dom"; // Importa o componente Link para navegação entre páginas
-import { useDispatch } from "react-redux"; // Importa o hook useDispatch do Redux para despachar ações
+import { useState, useEffect } from "react"; // Importa os hooks useState e useEffect do React
+import { Link, useNavigate } from "react-router-dom"; // Importa o componente Link e useNavigate para navegação
+import { useDispatch, useSelector } from "react-redux"; // Importa os hooks useDispatch e useSelector do Redux
 import { loginUser } from "@/store/auth-slice"; // Importa a ação de login do slice de autenticação
 import { useToast } from "@/hooks/use-toast"; // Importa o hook useToast para exibir mensagens de notificação
 
@@ -14,14 +14,11 @@ const initialState = {
 
 // Função principal que define o componente de Login
 function AuthLogin() {
-  // Usa o hook useState para armazenar os dados do formulário
-  const [formData, setFormData] = useState(initialState);
-
-  // Usa o hook useDispatch para despachar ações do Redux
-  const dispatch = useDispatch();
-
-  // Usa o hook useToast para exibir mensagens de sucesso ou erro ao usuário
-  const { toast } = useToast();
+  const [formData, setFormData] = useState(initialState); // Armazena os dados do formulário
+  const dispatch = useDispatch(); // Hook para despachar ações
+  const navigate = useNavigate(); // Hook para navegação
+  const { isAuthenticated } = useSelector((state) => state.auth); // Verifica se o usuário está autenticado
+  const { toast } = useToast(); // Hook para exibir mensagens de toast
 
   // Função chamada quando o formulário é submetido
   function onSubmit(event) {
@@ -30,12 +27,12 @@ function AuthLogin() {
     // Dispara a ação de login através do Redux e trata a resposta
     dispatch(loginUser(formData)).then((data) => {
       if (data?.payload?.success) {
-        // Se o login for bem-sucedido, exibe uma mensagem de sucesso
+        // Exibe uma mensagem de sucesso
         toast({
           title: data?.payload?.message,
         });
       } else {
-        // Se houver erro, exibe uma mensagem de erro
+        // Exibe uma mensagem de erro
         toast({
           title: data?.payload?.message,
           variant: "destructive", // Define que a mensagem é de erro
@@ -44,7 +41,13 @@ function AuthLogin() {
     });
   }
 
-  // Renderiza o componente de login
+  // Efeito para redirecionar o usuário para a página "Home" após o login
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/shop/home"); // Redireciona para a página "Home" se o login for bem-sucedido
+    }
+  }, [isAuthenticated, navigate]); // Dependências: redireciona sempre que o estado de autenticação mudar
+
   return (
     <div className="mx-auto w-full max-w-md space-y-6">
       <div className="text-center">

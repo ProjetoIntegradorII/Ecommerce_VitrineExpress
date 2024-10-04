@@ -11,7 +11,12 @@ const initialState = {
 // Cria uma ação assíncrona para adicionar um item ao carrinho
 export const addToCart = createAsyncThunk(
   "cart/addToCart", // Identificador da ação
-  async ({ userId, productId, quantity }) => {
+  async ({ userId, productId, quantity }, { rejectWithValue }) => {
+    // Se o userId não estiver definido, retorna um erro
+    if (!userId) {
+      return rejectWithValue("Usuário não autenticado"); // Indica que o usuário precisa estar logado
+    }
+
     // Faz uma requisição POST para adicionar um item ao carrinho
     const response = await axios.post(
       "http://localhost:5000/api/shop/cart/add",

@@ -87,27 +87,36 @@ function ShoppingListing() {
     dispatch(fetchProductDetails(getCurrentProductId)); // Despacha a ação para buscar detalhes do produto
   }
 
-  // Função para adicionar um produto ao carrinho
-  function handleAddtoCart(getCurrentProductId, getTotalStock) {
-    console.log(cartItems); // Debug: Mostra itens do carrinho
-    let getCartItems = cartItems.items || [];
+// Função para adicionar um produto ao carrinho
+function handleAddtoCart(getCurrentProductId, getTotalStock) {
+  // Verifica se o usuário está logado
+  if (!user) {
+    toast({
+      title: "Você precisa estar logado para adicionar produtos ao carrinho.", // Mensagem solicitando login
+      variant: "destructive",
+    });
+    return; // Retorna se o usuário não estiver logado
+  }
 
-    if (getCartItems.length) {
-      const indexOfCurrentItem = getCartItems.findIndex(
-        (item) => item.productId === getCurrentProductId
-      );
-      if (indexOfCurrentItem > -1) {
-        const getQuantity = getCartItems[indexOfCurrentItem].quantity;
-        if (getQuantity + 1 > getTotalStock) {
-          // Se a quantidade desejada exceder o estoque
-          toast({
-            title: `Only ${getQuantity} quantity can be added for this item`, // Mensagem de erro
-            variant: "destructive",
-          });
-          return;
-        }
+  console.log(cartItems); // Debug: Mostra itens do carrinho
+  let getCartItems = cartItems.items || [];
+
+  if (getCartItems.length) {
+    const indexOfCurrentItem = getCartItems.findIndex(
+      (item) => item.productId === getCurrentProductId
+    );
+    if (indexOfCurrentItem > -1) {
+      const getQuantity = getCartItems[indexOfCurrentItem].quantity;
+      if (getQuantity + 1 > getTotalStock) {
+        // Se a quantidade desejada exceder o estoque
+        toast({
+          title: `Apenas ${getQuantity} pode ser adicionadas ao carrinho`, // Mensagem de erro
+          variant: "destructive",
+        });
+        return;
       }
     }
+  }
 
     dispatch(
       addToCart({
@@ -119,7 +128,7 @@ function ShoppingListing() {
       if (data?.payload?.success) {
         dispatch(fetchCartItems(user?.id)); // Atualiza os itens do carrinho
         toast({
-          title: "Product is added to cart", // Mensagem de sucesso
+          title: "Produto adicionado no carrinho", // Mensagem de sucesso
         });
       }
     });
