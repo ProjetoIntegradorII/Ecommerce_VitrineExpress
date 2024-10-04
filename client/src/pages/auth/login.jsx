@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom"; // Importa o componente Li
 import { useDispatch, useSelector } from "react-redux"; // Importa os hooks useDispatch e useSelector do Redux
 import { loginUser } from "@/store/auth-slice"; // Importa a ação de login do slice de autenticação
 import { useToast } from "@/hooks/use-toast"; // Importa o hook useToast para exibir mensagens de notificação
+import { Button } from "@/components/ui/button";
 
 // Define o estado inicial do formulário, com os campos 'email' e 'password' vazios
 const initialState = {
@@ -48,8 +49,13 @@ function AuthLogin() {
     }
   }, [isAuthenticated, navigate]); // Dependências: redireciona sempre que o estado de autenticação mudar
 
+  // Função para voltar à página Home
+  function handleBackToHome() {
+    navigate("/shop/home");
+  }
+
   return (
-    <div className="mx-auto w-full max-w-md space-y-6">
+    <div className="mx-auto w-full max-w-md space-y-6 relative">
       <div className="text-center">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
           Faça login na sua conta
@@ -74,6 +80,14 @@ function AuthLogin() {
         setFormData={setFormData} // Função para atualizar os dados do formulário
         onSubmit={onSubmit} // Função chamada ao submeter o formulário
       />
+
+      {/* Botão para voltar para a página Home */}
+      <Button
+        onClick={handleBackToHome}
+        className="fixed bottom-4 right-4 bg-primary text-white py-2 px-4 rounded-full shadow-md hover:bg-primary-dark"
+      >
+        Voltar para Home
+      </Button>
     </div>
   );
 }

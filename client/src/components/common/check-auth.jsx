@@ -12,7 +12,7 @@ function CheckAuth({ isAuthenticated, user, children }) {
   // Verifica se a página atual é pública
   const isPublicPage = publicPages.includes(location.pathname);
 
-  // Se o caminho atual for a raiz ("/") ou qualquer outra página pública
+  // Se o caminho atual for uma página pública
   if (isPublicPage) {
     // Se o usuário estiver autenticado e for um administrador, redireciona para o dashboard do admin
     if (isAuthenticated && user?.role === "admin") {
@@ -30,14 +30,14 @@ function CheckAuth({ isAuthenticated, user, children }) {
 
   // Se o usuário não estiver autenticado e tentar acessar uma página restrita
   if (!isAuthenticated) {
-    return <Navigate to="/auth/login" />;
+    // Redireciona para a página de login, mantendo a página atual para redirecionar de volta após o login
+    return <Navigate to="/auth/login" state={{ from: location.pathname }} />;
   }
 
   // Se o usuário estiver autenticado e tentar acessar as páginas de login ou registro
   if (
     isAuthenticated &&
-    (location.pathname.includes("/login") ||
-      location.pathname.includes("/register"))
+    (location.pathname.includes("/auth/login") || location.pathname.includes("/auth/register"))
   ) {
     // Se o usuário for um administrador, redireciona para o dashboard do admin
     if (user?.role === "admin") {
@@ -54,7 +54,7 @@ function CheckAuth({ isAuthenticated, user, children }) {
     user?.role !== "admin" &&
     location.pathname.includes("/admin")
   ) {
-    // Redireciona para uma página não autorizada
+    // Redireciona para uma página de não autorizado
     return <Navigate to="/unauth-page" />;
   }
 
@@ -68,7 +68,7 @@ function CheckAuth({ isAuthenticated, user, children }) {
     return <Navigate to="/admin/dashboard" />;
   }
 
-  // Se nenhuma das condições acima for atendida, renderiza os filhos do componente
+  // Se nenhuma das condições acima for atendida, renderiza os filhos do componente (conteúdo da página)
   return <>{children}</>;
 }
 

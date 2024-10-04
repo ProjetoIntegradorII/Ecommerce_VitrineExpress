@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import AuthLayout from "./components/auth/layout";
 import AuthLogin from "./pages/auth/login";
 import AuthRegister from "./pages/auth/register";
@@ -26,6 +26,7 @@ import SearchProducts from "./pages/shopping-view/search";
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const location = useLocation();  // Obtém a localização atual
 
   useEffect(() => {
     dispatch(checkAuth());
@@ -41,13 +42,18 @@ function App() {
 
         {/* Rotas de autenticação */}
         <Route path="/auth" element={<AuthLayout />}>
-          <Route path="login" element={<AuthLogin />} />
+          <Route 
+            path="login" 
+            element={
+              <AuthLogin redirectTo={location.state?.from || "/shop/home"} /> // Redireciona para a última página pública ou Home
+            }
+          />
           <Route path="register" element={<AuthRegister />} />
         </Route>
 
         {/* Rotas do administrador */}
         <Route
-          path="/admin"
+          path="/admin/*"
           element={
             <CheckAuth isAuthenticated={isAuthenticated} user={user}>
               <AdminLayout />
@@ -70,7 +76,7 @@ function App() {
         {/* Rotas privadas da loja */}
         <Route
           path="/shop"
-          element={<ShoppingLayout />} // ShoppingLayout aplicado para todas as rotas da loja
+          element={<ShoppingLayout />}
         >
           <Route
             path="checkout"

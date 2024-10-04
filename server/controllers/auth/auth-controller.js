@@ -73,7 +73,7 @@ const loginUser = async (req, res) => {
         userName: checkUser.userName,
       },
       "CLIENT_SECRET_KEY", // Chave secreta para assinar o token
-      { expiresIn: "60m" } // O token expira em 60 minutos
+      { expiresIn: "5m" } // O token expira em 5 minutos
     );
 
     // Define o cookie com o token e retorna os dados do usuário

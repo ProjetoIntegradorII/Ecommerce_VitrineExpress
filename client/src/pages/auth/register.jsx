@@ -5,6 +5,7 @@ import { registerUser } from "@/store/auth-slice"; // Importa a ação de regist
 import { useState } from "react"; // Importa o hook useState do React
 import { useDispatch } from "react-redux"; // Importa o hook useDispatch do Redux para despachar ações
 import { Link, useNavigate } from "react-router-dom"; // Importa componentes para navegação entre páginas
+import { Button } from "@/components/ui/button";
 
 // Define o estado inicial do formulário de registro
 const initialState = {
@@ -49,9 +50,14 @@ function AuthRegister() {
     });
   }
 
+  // Função para voltar à página Home
+  function handleBackToHome() {
+    navigate("/shop/home");
+  }
+
   // Renderiza o componente de registro
   return (
-    <div className="mx-auto w-full max-w-md space-y-6">
+    <div className="mx-auto w-full max-w-md space-y-6 relative">
       <div className="text-center">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
           Criar nova conta
@@ -74,6 +80,14 @@ function AuthRegister() {
         setFormData={setFormData} // Função para atualizar os dados do formulário
         onSubmit={onSubmit} // Função chamada ao submeter o formulário
       />
+
+      {/* Botão para voltar para a página Home */}
+      <Button
+        onClick={handleBackToHome}
+        className="fixed bottom-4 right-4 bg-primary text-white py-2 px-4 rounded-full shadow-md hover:bg-primary-dark"
+      >
+        Voltar para Home
+      </Button>
     </div>
   );
 }
