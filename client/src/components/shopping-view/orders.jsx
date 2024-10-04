@@ -37,7 +37,6 @@ function ShoppingOrders() {
     if (orderDetails !== null) setOpenDetailsDialog(true); // Abre o diálogo se os detalhes do pedido forem carregados
   }, [orderDetails]);
 
-  console.log(orderDetails, "orderDetails"); // Log para depuração
 
   return (
     <Card> {/* Componente de card que envolve a tabela de pedidos */}

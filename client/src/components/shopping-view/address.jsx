@@ -123,7 +123,6 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
     dispatch(fetchAllAddresses(user?.id)); // Busca todos os endereços
   }, [dispatch]);
 
-  console.log(addressList, "addressList"); // Log da lista de endereços
 
   return (
     <Card>

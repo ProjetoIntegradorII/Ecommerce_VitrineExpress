@@ -11,8 +11,6 @@ function AdminDashboard() {
   const dispatch = useDispatch(); // Hook para obter a função dispatch do Redux
   const { featureImageList } = useSelector((state) => state.commonFeature); // Seleciona a lista de imagens de destaque do estado do Redux
 
-  console.log(uploadedImageUrl, "uploadedImageUrl"); // Debug: mostra a URL da imagem carregada
-
   // Função para fazer o upload da imagem de destaque
   function handleUploadFeatureImage() {
     // Dispara a ação para adicionar a imagem de destaque
@@ -31,7 +29,6 @@ function AdminDashboard() {
     dispatch(getFeatureImages());
   }, [dispatch]);
 
-  console.log(featureImageList, "featureImageList"); // Debug: mostra a lista de imagens de destaque
 
   return (
     <div>

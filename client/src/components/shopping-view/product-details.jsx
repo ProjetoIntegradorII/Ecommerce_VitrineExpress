@@ -24,7 +24,6 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
 
   // Função para lidar com mudanças na classificação
   function handleRatingChange(getRating) {
-    console.log(getRating, "getRating");
     setRating(getRating); // Atualiza a classificação
   }
 
@@ -109,8 +108,6 @@ function handleAddToCart(getCurrentProductId, getTotalStock) {
   useEffect(() => {
     if (productDetails !== null) dispatch(getReviews(productDetails?._id));
   }, [productDetails]);
-
-  console.log(reviews, "reviews"); // Log para depuração
 
   // Calcula a média das avaliações
   const averageReview =

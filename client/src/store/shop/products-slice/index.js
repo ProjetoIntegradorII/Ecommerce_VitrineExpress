@@ -13,7 +13,6 @@ const initialState = {
 export const fetchAllFilteredProducts = createAsyncThunk(
   "/products/fetchAllProducts", // Identificador da ação
   async ({ filterParams, sortParams }) => {
-    console.log(fetchAllFilteredProducts, "fetchAllFilteredProducts"); // Log para depuração
 
     // Cria uma string de consulta com os parâmetros de filtro e ordenação
     const query = new URLSearchParams({
@@ -25,8 +24,6 @@ export const fetchAllFilteredProducts = createAsyncThunk(
     const result = await axios.get(
       `http://localhost:5000/api/shop/products/get?${query}`
     );
-
-    console.log(result); // Log da resposta para depuração
 
     return result?.data; // Retorna os dados da resposta
   }

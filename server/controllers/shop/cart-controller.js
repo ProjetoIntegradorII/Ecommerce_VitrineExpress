@@ -11,7 +11,7 @@ const addToCart = async (req, res) => {
     if (!userId || !productId || quantity <= 0) {
       return res.status(400).json({
         success: false,
-        message: "Invalid data provided!",
+        message: "Dados inválidos fornecidos!",
       });
     }
 
@@ -20,7 +20,7 @@ const addToCart = async (req, res) => {
     if (!product) {
       return res.status(404).json({
         success: false,
-        message: "Product not found",
+        message: "Produto não encontrado",
       });
     }
 
@@ -54,7 +54,7 @@ const addToCart = async (req, res) => {
     console.log(error); // Registra o erro no console
     res.status(500).json({
       success: false,
-      message: "Error",
+      message: "Erro",
     });
   }
 };
@@ -68,7 +68,7 @@ const fetchCartItems = async (req, res) => {
     if (!userId) {
       return res.status(400).json({
         success: false,
-        message: "User id is mandatory!",
+        message: "O ID do usuário é obrigatório!",
       });
     }
 
@@ -82,7 +82,7 @@ const fetchCartItems = async (req, res) => {
     if (!cart) {
       return res.status(404).json({
         success: false,
-        message: "Cart not found!",
+        message: "Carrinho não encontrado!",
       });
     }
 
@@ -118,7 +118,7 @@ const fetchCartItems = async (req, res) => {
     console.log(error); // Registra o erro no console
     res.status(500).json({
       success: false,
-      message: "Error",
+      message: "Erro",
     });
   }
 };
@@ -132,7 +132,7 @@ const updateCartItemQty = async (req, res) => {
     if (!userId || !productId || quantity <= 0) {
       return res.status(400).json({
         success: false,
-        message: "Invalid data provided!",
+        message: "Dados inválidos fornecidos!",
       });
     }
 
@@ -141,7 +141,7 @@ const updateCartItemQty = async (req, res) => {
     if (!cart) {
       return res.status(404).json({
         success: false,
-        message: "Cart not found!",
+        message: "Carrinho não encontrado!",
       });
     }
 
@@ -154,7 +154,7 @@ const updateCartItemQty = async (req, res) => {
     if (findCurrentProductIndex === -1) {
       return res.status(404).json({
         success: false,
-        message: "Cart item not present!",
+        message: "Item do carrinho não presente!",
       });
     }
 
@@ -172,7 +172,7 @@ const updateCartItemQty = async (req, res) => {
     const populateCartItems = cart.items.map((item) => ({
       productId: item.productId ? item.productId._id : null,
       image: item.productId ? item.productId.image : null,
-      title: item.productId ? item.productId.title : "Product not found",
+      title: item.productId ? item.productId.title : "Produto não encontrado",
       price: item.productId ? item.productId.price : null,
       salePrice: item.productId ? item.productId.salePrice : null,
       quantity: item.quantity,
@@ -189,7 +189,7 @@ const updateCartItemQty = async (req, res) => {
     console.log(error); // Registra o erro no console
     res.status(500).json({
       success: false,
-      message: "Error",
+      message: "Erro",
     });
   }
 };
@@ -203,7 +203,7 @@ const deleteCartItem = async (req, res) => {
     if (!userId || !productId) {
       return res.status(400).json({
         success: false,
-        message: "Invalid data provided!",
+        message: "Dados inválidos fornecidos!",
       });
     }
 
@@ -217,7 +217,7 @@ const deleteCartItem = async (req, res) => {
     if (!cart) {
       return res.status(404).json({
         success: false,
-        message: "Cart not found!",
+        message: "Carrinho não encontrado!",
       });
     }
 
@@ -239,7 +239,7 @@ const deleteCartItem = async (req, res) => {
     const populateCartItems = cart.items.map((item) => ({
       productId: item.productId ? item.productId._id : null,
       image: item.productId ? item.productId.image : null,
-      title: item.productId ? item.productId.title : "Product not found",
+      title: item.productId ? item.productId.title : "Produto não encontrado",
       price: item.productId ? item.productId.price : null,
       salePrice: item.productId ? item.productId.salePrice : null,
       quantity: item.quantity,
@@ -256,7 +256,7 @@ const deleteCartItem = async (req, res) => {
     console.log(error); // Registra o erro no console
     res.status(500).json({
       success: false,
-      message: "Error",
+      message: "Erro",
     });
   }
 };

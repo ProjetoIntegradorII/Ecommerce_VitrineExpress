@@ -32,8 +32,7 @@ function createSearchParamsHelper(filterParams) {
     }
   }
 
-  console.log(queryParams, "queryParams"); // Debug: Mostra os parâmetros de busca
-
+  
   return queryParams.join("&"); // Retorna a string de parâmetros de busca
 }
 
@@ -83,7 +82,6 @@ function ShoppingListing() {
 
   // Função para buscar detalhes do produto
   function handleGetProductDetails(getCurrentProductId) {
-    console.log(getCurrentProductId); // Debug: Mostra o ID do produto
     dispatch(fetchProductDetails(getCurrentProductId)); // Despacha a ação para buscar detalhes do produto
   }
 
@@ -98,7 +96,6 @@ function handleAddtoCart(getCurrentProductId, getTotalStock) {
     return; // Retorna se o usuário não estiver logado
   }
 
-  console.log(cartItems); // Debug: Mostra itens do carrinho
   let getCartItems = cartItems.items || [];
 
   if (getCartItems.length) {
@@ -161,7 +158,6 @@ function handleAddtoCart(getCurrentProductId, getTotalStock) {
     if (productDetails !== null) setOpenDetailsDialog(true);
   }, [productDetails]);
 
-  console.log(productList, "productListproductListproductList"); // Debug: Mostra a lista de produtos
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">

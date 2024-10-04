@@ -11,7 +11,7 @@ const addAddress = async (req, res) => {
     if (!userId || !address || !city || !pincode || !phone || !notes) {
       return res.status(400).json({
         success: false,
-        message: "Invalid data provided!",
+        message: "Dados inválidos fornecidos!",
       });
     }
 
@@ -37,7 +37,7 @@ const addAddress = async (req, res) => {
     console.log(e); // Registra o erro no console
     res.status(500).json({
       success: false,
-      message: "Error",
+      message: "Erro",
     });
   }
 };
@@ -50,7 +50,7 @@ const fetchAllAddress = async (req, res) => {
     if (!userId) {
       return res.status(400).json({
         success: false,
-        message: "User id is required!",
+        message: "O ID do usuário é obrigatório!",
       });
     }
 
@@ -66,7 +66,7 @@ const fetchAllAddress = async (req, res) => {
     console.log(e); // Registra o erro no console
     res.status(500).json({
       success: false,
-      message: "Error",
+      message: "Erro",
     });
   }
 };
@@ -81,7 +81,7 @@ const editAddress = async (req, res) => {
     if (!userId || !addressId) {
       return res.status(400).json({
         success: false,
-        message: "User and address id is required!",
+        message: "O ID do usuário e do endereço é obrigatório!",
       });
     }
 
@@ -99,7 +99,7 @@ const editAddress = async (req, res) => {
     if (!address) {
       return res.status(404).json({
         success: false,
-        message: "Address not found",
+        message: "Endereço não encontrado",
       });
     }
 
@@ -112,7 +112,7 @@ const editAddress = async (req, res) => {
     console.log(e); // Registra o erro no console
     res.status(500).json({
       success: false,
-      message: "Error",
+      message: "Erro",
     });
   }
 };
@@ -125,7 +125,7 @@ const deleteAddress = async (req, res) => {
     if (!userId || !addressId) {
       return res.status(400).json({
         success: false,
-        message: "User and address id is required!",
+        message: "O ID do usuário e do endereço é obrigatório!",
       });
     }
 
@@ -136,20 +136,20 @@ const deleteAddress = async (req, res) => {
     if (!address) {
       return res.status(404).json({
         success: false,
-        message: "Address not found",
+        message: "Endereço não encontrado",
       });
     }
 
     // Retorna uma resposta de sucesso informando que o endereço foi deletado
     res.status(200).json({
       success: true,
-      message: "Address deleted successfully",
+      message: "Endereço excluído com sucesso",
     });
   } catch (e) {
     console.log(e); // Registra o erro no console
     res.status(500).json({
       success: false,
-      message: "Error",
+      message: "Erro",
     });
   }
 };

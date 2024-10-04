@@ -49,9 +49,6 @@ function AuthRegister() {
     });
   }
 
-  // Exibe os dados do formulário no console para depuração
-  console.log(formData);
-
   // Renderiza o componente de registro
   return (
     <div className="mx-auto w-full max-w-md space-y-6">

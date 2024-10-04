@@ -12,7 +12,7 @@ const getAllOrdersOfAllUsers = async (req, res) => {
       // Retorna uma resposta 404 se não houver pedidos
       return res.status(404).json({
         success: false,
-        message: "No orders found!",
+        message: "Nenhum pedido encontrado!",
       });
     }
 
@@ -26,7 +26,7 @@ const getAllOrdersOfAllUsers = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Some error occurred!",
+      message: "Ocorreu algum erro",
     });
   }
 };
@@ -45,7 +45,7 @@ const getOrderDetailsForAdmin = async (req, res) => {
       // Retorna uma resposta 404 se o pedido não existir
       return res.status(404).json({
         success: false,
-        message: "Order not found!",
+        message: "Nenhum pedido encontrado!",
       });
     }
 
@@ -59,7 +59,7 @@ const getOrderDetailsForAdmin = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Some error occurred!",
+      message: "Ocorreu algum erro",
     });
   }
 };
@@ -79,7 +79,7 @@ const updateOrderStatus = async (req, res) => {
       // Retorna uma resposta 404 se o pedido não existir
       return res.status(404).json({
         success: false,
-        message: "Order not found!",
+        message: "Nenhum pedido encontrado!",
       });
     }
 
@@ -89,14 +89,14 @@ const updateOrderStatus = async (req, res) => {
     // Retorna uma resposta 200 confirmando que o status foi atualizado
     res.status(200).json({
       success: true,
-      message: "Order status is updated successfully!",
+      message: "O status do pedido foi atualizado com sucesso!",
     });
   } catch (e) {
     // Loga o erro e retorna uma resposta 500 em caso de falha
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Some error occurred!",
+      message: "Ocorreu algum erro",
     });
   }
 };

@@ -56,7 +56,6 @@ function AdminProducts() {
             formData,
           })
         ).then((data) => {
-          console.log(data, "edit");
 
           // Se a edição for bem-sucedida, atualiza a lista de produtos e reseta o formulário
           if (data?.payload?.success) {
@@ -106,8 +105,6 @@ function AdminProducts() {
     // Busca todos os produtos ao montar o componente
     dispatch(fetchAllProducts());
   }, [dispatch]);
-
-  console.log(formData, "productList"); // Log para verificar o estado do formulário
 
   return (
     <Fragment>

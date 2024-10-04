@@ -22,7 +22,7 @@ const handleImageUpload = async (req, res) => {
     console.log(error);
     res.json({
       success: false,
-      message: "Error occurred",
+      message: "Ocorreu um erro",
     });
   }
 };
@@ -42,8 +42,6 @@ const addProduct = async (req, res) => {
       totalStock,
       averageReview,
     } = req.body;
-
-    console.log(averageReview, "averageReview");
 
     // Cria um novo objeto de produto com as informações recebidas
     const newlyCreatedProduct = new Product({
@@ -69,7 +67,7 @@ const addProduct = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Error occurred",
+      message: "Ocorreu um erro",
     });
   }
 };
@@ -88,7 +86,7 @@ const fetchAllProducts = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Error occurred",
+      message: "Ocorreu um erro",
     });
   }
 };
@@ -115,7 +113,7 @@ const editProduct = async (req, res) => {
     if (!findProduct)
       return res.status(404).json({
         success: false,
-        message: "Product not found",
+        message: "Produto não encontrado",
       });
 
     // Atualiza as propriedades do produto, mantendo os valores atuais caso não sejam fornecidos
@@ -141,7 +139,7 @@ const editProduct = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Error occurred",
+      message: "Ocorreu um erro",
     });
   }
 };
@@ -157,20 +155,20 @@ const deleteProduct = async (req, res) => {
     if (!product)
       return res.status(404).json({
         success: false,
-        message: "Product not found",
+        message: "Produto não encontrado",
       });
 
     // Retorna uma mensagem de sucesso
     res.status(200).json({
       success: true,
-      message: "Product deleted successfully",
+      message: "Produto excluído com sucesso",
     });
   } catch (e) {
     // Loga o erro e retorna uma resposta de erro
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Error occurred",
+      message: "Ocorreu um erro",
     });
   }
 };

@@ -13,7 +13,7 @@ const registerUser = async (req, res) => {
     if (checkUser)
       return res.json({
         success: false,
-        message: "User already exists with the same email! Please try again",
+        message: "Já existe usuário com o mesmo e-mail! Por favor, tente novamente",
       });
 
     // Criptografa a senha com um salt de 12
@@ -29,13 +29,13 @@ const registerUser = async (req, res) => {
     await newUser.save();
     res.status(200).json({
       success: true,
-      message: "Registration successful",
+      message: "Registro realizado com sucesso",
     });
   } catch (e) {
     console.log(e); // Registra o erro no console
     res.status(500).json({
       success: false,
-      message: "Some error occurred",
+      message: "Ocorreu algum erro",
     });
   }
 };
@@ -50,7 +50,7 @@ const loginUser = async (req, res) => {
     if (!checkUser)
       return res.json({
         success: false,
-        message: "User doesn't exist! Please register first",
+        message: "O usuário não existe! Por favor registre-se primeiro",
       });
 
     // Compara a senha fornecida com a senha criptografada armazenada
@@ -61,7 +61,7 @@ const loginUser = async (req, res) => {
     if (!checkPasswordMatch)
       return res.json({
         success: false,
-        message: "Incorrect password! Please try again",
+        message: "Senha incorreta! Por favor, tente novamente",
       });
 
     // Gera um token JWT com os dados do usuário
@@ -79,7 +79,7 @@ const loginUser = async (req, res) => {
     // Define o cookie com o token e retorna os dados do usuário
     res.cookie("token", token, { httpOnly: true, secure: false }).json({
       success: true,
-      message: "Logged in successfully",
+      message: "Logado com sucesso",
       user: {
         email: checkUser.email,
         role: checkUser.role,
@@ -91,7 +91,7 @@ const loginUser = async (req, res) => {
     console.log(e); // Registra o erro no console
     res.status(500).json({
       success: false,
-      message: "Some error occurred",
+      message: "Ocorreu algum erro",
     });
   }
 };
@@ -101,7 +101,7 @@ const logoutUser = (req, res) => {
   // Limpa o cookie do token e retorna a resposta
   res.clearCookie("token").json({
     success: true,
-    message: "Logged out successfully!",
+    message: "Desconectado com sucesso!",
   });
 };
 
@@ -111,7 +111,7 @@ const authMiddleware = async (req, res, next) => {
   if (!token)
     return res.status(401).json({
       success: false,
-      message: "Unauthorized user!",
+      message: "Usuário não autorizado!",
     });
 
   try {
@@ -122,7 +122,7 @@ const authMiddleware = async (req, res, next) => {
   } catch (error) {
     res.status(401).json({
       success: false,
-      message: "Unauthorized user!",
+      message: "Usuário não autorizado!",
     });
   }
 };

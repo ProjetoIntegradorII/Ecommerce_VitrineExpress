@@ -50,7 +50,6 @@ const adminOrderSlice = createSlice({
   initialState, // Estado inicial
   reducers: {
     resetOrderDetails: (state) => {
-      console.log("resetOrderDetails"); // Log para debug
       state.orderDetails = null; // Reseta os detalhes do pedido
     },
   },

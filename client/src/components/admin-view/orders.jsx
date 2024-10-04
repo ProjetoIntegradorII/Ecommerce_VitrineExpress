@@ -34,7 +34,6 @@ function AdminOrdersView() {
     dispatch(getAllOrdersForAdmin());
   }, [dispatch]);
 
-  console.log(orderDetails, "orderList"); // Log para verificar os detalhes das ordens
 
   // useEffect para abrir o modal quando os detalhes de uma ordem são obtidos
   useEffect(() => {

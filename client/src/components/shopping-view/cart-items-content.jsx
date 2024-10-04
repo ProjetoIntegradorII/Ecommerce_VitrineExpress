@@ -37,8 +37,6 @@ function UserCartItemsContent({ cartItem }) {
         );
         const getTotalStock = productList[getCurrentProductIndex].totalStock; // Obtém o total de estoque do produto
 
-        console.log(getCurrentProductIndex, getTotalStock, "getTotalStock"); // Log do estoque total
-
         if (indexOfCurrentCartItem > -1) {
           const getQuantity = getCartItems[indexOfCurrentCartItem].quantity; // Obtém a quantidade atual do item
           if (getQuantity + 1 > getTotalStock) {

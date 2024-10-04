@@ -8,7 +8,7 @@ const searchProducts = async (req, res) => {
     if (!keyword || typeof keyword !== "string") {
       return res.status(400).json({
         success: false,
-        message: "Keyword is required and must be in string format",
+        message: "A palavra-chave é obrigatória e deve estar no formato de string",
       });
     }
 
@@ -37,7 +37,7 @@ const searchProducts = async (req, res) => {
     console.log(error);
     res.status(500).json({
       success: false,
-      message: "Error",
+      message: "Erro",
     });
   }
 };

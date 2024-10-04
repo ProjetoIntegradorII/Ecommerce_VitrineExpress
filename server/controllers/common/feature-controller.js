@@ -6,8 +6,6 @@ const addFeatureImage = async (req, res) => {
   try {
     const { image } = req.body; // Extrai a imagem do corpo da requisição
 
-    console.log(image, "image"); // Registra a imagem no console para fins de depuração
-
     // Cria uma nova instância do modelo Feature com a imagem fornecida
     const featureImages = new Feature({
       image,
@@ -25,7 +23,7 @@ const addFeatureImage = async (req, res) => {
     console.log(e); // Registra o erro no console
     res.status(500).json({
       success: false,
-      message: "Some error occurred!",
+      message: "Ocorreu algum erro",
     });
   }
 };
@@ -45,7 +43,7 @@ const getFeatureImages = async (req, res) => {
     console.log(e); // Registra o erro no console
     res.status(500).json({
       success: false,
-      message: "Some error occurred!",
+      message: "Ocorreu algum erro",
     });
   }
 };

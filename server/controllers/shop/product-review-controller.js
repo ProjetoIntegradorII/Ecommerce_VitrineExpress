@@ -19,7 +19,7 @@ const addProductReview = async (req, res) => {
     if (!order) {
       return res.status(403).json({
         success: false,
-        message: "You need to purchase product to review it.",
+        message: "Você precisa comprar o produto para revisá-lo.",
       });
     }
 
@@ -32,7 +32,7 @@ const addProductReview = async (req, res) => {
     if (checkExistingReview) {
       return res.status(400).json({
         success: false,
-        message: "You already reviewed this product!",
+        message: "Você já avaliou este produto!",
       });
     }
 
@@ -64,7 +64,7 @@ const addProductReview = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Error",
+      message: "Erro",
     });
   }
 };
@@ -83,7 +83,7 @@ const getProductReviews = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Error",
+      message: "Erro",
     });
   }
 };

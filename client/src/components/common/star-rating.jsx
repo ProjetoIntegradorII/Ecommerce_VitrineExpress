@@ -3,7 +3,6 @@ import { Button } from "../ui/button"; // Importa o componente de botão persona
 
 // Define o componente StarRatingComponent que recebe a avaliação e uma função para mudar a avaliação
 function StarRatingComponent({ rating, handleRatingChange }) {
-  console.log(rating, "rating"); // Loga a avaliação atual para depuração
 
   // Mapeia um array de 1 a 5 para renderizar as estrelas de avaliação
   return [1, 2, 3, 4, 5].map((star) => (
