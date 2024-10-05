@@ -13,11 +13,9 @@ const initialState = {
 export const getFeatureImages = createAsyncThunk(
   "common/getFeatureImages", // Identificador da ação
   async () => {
-    // Faz uma requisição GET para obter as imagens em destaque
     const response = await axios.get(
       `http://localhost:5000/api/common/feature/get`
     );
-
     return response.data; // Retorna os dados da resposta
   }
 );
@@ -26,13 +24,22 @@ export const getFeatureImages = createAsyncThunk(
 export const addFeatureImage = createAsyncThunk(
   "common/addFeatureImage", // Identificador da ação
   async (image) => {
-    // Faz uma requisição POST para adicionar uma nova imagem em destaque
     const response = await axios.post(
       `http://localhost:5000/api/common/feature/add`,
       { image } // Envia a imagem no corpo da requisição
     );
-
     return response.data; // Retorna os dados da resposta
+  }
+);
+
+// Cria uma ação assíncrona para deletar uma imagem em destaque
+export const deleteFeatureImage = createAsyncThunk(
+  "common/deleteFeatureImage", // Identificador da ação
+  async (imageId) => {
+    const response = await axios.delete(
+      `http://localhost:5000/api/common/feature/delete/${imageId}`
+    );
+    return { id: imageId, success: response.data.success }; // Retorna o ID da imagem deletada e o status de sucesso
   }
 );
 
@@ -54,6 +61,17 @@ const commonSlice = createSlice({
       .addCase(getFeatureImages.rejected, (state) => {
         state.isLoading = false; // Termina o carregamento
         state.featureImageList = []; // Limpa a lista de imagens em caso de falha
+      })
+      .addCase(addFeatureImage.fulfilled, (state, action) => {
+        state.featureImageList.push(action.payload.data); // Adiciona a nova imagem na lista
+      })
+      .addCase(deleteFeatureImage.fulfilled, (state, action) => {
+        if (action.payload.success) {
+          // Remove a imagem deletada da lista de imagens em destaque
+          state.featureImageList = state.featureImageList.filter(
+            (image) => image.id !== action.payload.id
+          );
+        }
       });
   },
 });

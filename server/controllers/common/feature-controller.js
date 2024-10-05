@@ -7,9 +7,7 @@ const addFeatureImage = async (req, res) => {
     const { image } = req.body; // Extrai a imagem do corpo da requisição
 
     // Cria uma nova instância do modelo Feature com a imagem fornecida
-    const featureImages = new Feature({
-      image,
-    });
+    const featureImages = new Feature({ image });
 
     // Salva a nova imagem de característica no banco de dados
     await featureImages.save();
@@ -48,5 +46,34 @@ const getFeatureImages = async (req, res) => {
   }
 };
 
+// Função para deletar uma imagem de característica
+const deleteFeatureImage = async (req, res) => {
+  try {
+    const { id } = req.params; // Extrai o ID da imagem dos parâmetros da requisição
+
+    // Tenta encontrar e deletar a imagem pelo ID
+    const deletedImage = await Feature.findByIdAndDelete(id);
+
+    if (!deletedImage) {
+      return res.status(404).json({
+        success: false,
+        message: "Imagem não encontrada",
+      });
+    }
+
+    // Retorna uma resposta de sucesso indicando que a imagem foi deletada
+    res.status(200).json({
+      success: true,
+      message: "Imagem deletada com sucesso",
+    });
+  } catch (e) {
+    console.log(e); // Registra o erro no console
+    res.status(500).json({
+      success: false,
+      message: "Ocorreu algum erro",
+    });
+  }
+};
+
 // Exporta as funções para uso em outros módulos
-module.exports = { addFeatureImage, getFeatureImages };
+module.exports = { addFeatureImage, getFeatureImages, deleteFeatureImage };
