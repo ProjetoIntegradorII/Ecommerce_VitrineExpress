@@ -1,8 +1,15 @@
-// Define o componente UnauthPage que exibe uma mensagem para usuários não autorizados.
+import accImg from "../../assets/unauthorized-page.png";
+
 function UnauthPage() {
-  // Retorna um elemento h1 com uma mensagem informando que o usuário não tem acesso à página.
-  return <h1>Você não tem acesso para visualizar esta página!</h1>;
+  return (
+    <div className="flex flex-col h-screen"> {/* Garante que o contêiner ocupe toda a altura da tela */}
+      <img
+        src={accImg}
+        className="h-full w-full object-cover object-center" // Estiliza a imagem para cobrir todo o espaço disponível
+        alt="Página não autorizada"
+      />
+    </div>
+  );
 }
 
-// Exporta o componente UnauthPage como padrão para que possa ser utilizado em outras partes da aplicação.
 export default UnauthPage;

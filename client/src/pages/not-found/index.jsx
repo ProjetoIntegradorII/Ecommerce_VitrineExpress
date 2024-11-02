@@ -1,8 +1,32 @@
-// Define o componente NotFound que será exibido quando uma rota ou página não for encontrada.
+import accImg from "../../assets/404-page-not-found.png";
 function NotFound() {
-  // Retorna um elemento div com a mensagem informando que a página não existe.
-  return <div>Página não existe!</div>;
-}
+  return (
+      <div className="flex flex-col">
+        <img
+          src={accImg}
+          className="h-full w-full object-cover object-center" // Estiliza a imagem para cobrir todo o espaço disponível
+        />
+      <div style={styles.text}>Página não encontrada</div>
+    </div>
+    );
+  };
 
-// Exporta o componente NotFound como padrão para ser utilizado em outras partes da aplicação.
+const styles = {
+  container: {
+    position: 'relative',
+    width: '100vw',
+    height: '100vh',
+    overflow: 'hidden',
+  },
+  text: {
+    position: 'absolute',
+    top: '20%',
+    left: '53%',
+    transform: 'translate(-50%, -50%)',
+    color: 'navy',
+    fontSize: '2em',
+    fontWeight: 'bold',
+  },
+};
+
 export default NotFound;

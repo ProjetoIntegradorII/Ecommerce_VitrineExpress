@@ -1,11 +1,11 @@
 import CommonForm from "@/components/common/form"; // Importa um componente de formulário reutilizável
-import { loginFormControls } from "@/config"; // Importa os controles do formulário de login (campos e configurações)
-import { useState, useEffect } from "react"; // Importa os hooks useState e useEffect do React
-import { Link, useNavigate } from "react-router-dom"; // Importa o componente Link e useNavigate para navegação
-import { useDispatch, useSelector } from "react-redux"; // Importa os hooks useDispatch e useSelector do Redux
-import { loginUser } from "@/store/auth-slice"; // Importa a ação de login do slice de autenticação
-import { useToast } from "@/hooks/use-toast"; // Importa o hook useToast para exibir mensagens de notificação
 import { Button } from "@/components/ui/button";
+import { loginFormControls } from "@/config"; // Importa os controles do formulário de login (campos e configurações)
+import { useToast } from "@/hooks/use-toast"; // Importa o hook useToast para exibir mensagens de notificação
+import { loginUser } from "@/store/auth-slice"; // Importa a ação de login do slice de autenticação
+import { useEffect, useState } from "react"; // Importa os hooks useState e useEffect do React
+import { useDispatch, useSelector } from "react-redux"; // Importa os hooks useDispatch e useSelector do Redux
+import { Link, useNavigate } from "react-router-dom"; // Importa o componente Link e useNavigate para navegação
 
 // Define o estado inicial do formulário, com os campos 'email' e 'password' vazios
 const initialState = {
@@ -62,12 +62,12 @@ function AuthLogin() {
         </h1>
         <p className="mt-2">
           {/* Exibe uma mensagem para o usuário que não tem conta, com um link para o registro */}
-          Ainda não possui cadastro, se
+          Ainda não possui cadastro?
           <Link
             className="font-medium ml-2 text-primary hover:underline"
             to="/auth/register"
           >
-            Registre
+            Registre-se!
           </Link>
         </p>
       </div>
