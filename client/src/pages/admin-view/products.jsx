@@ -34,7 +34,8 @@ const initialFormData = {
 
 function AdminProducts() {
   // Hooks de estado
-  const [openCreateProductsDialog, setOpenCreateProductsDialog] = useState(false); // Estado para controlar a visibilidade do diálogo
+  const [openCreateProductsDialog, setOpenCreateProductsDialog] =
+    useState(false); // Estado para controlar a visibilidade do diálogo
   const [formData, setFormData] = useState(initialFormData); // Estado para armazenar os dados do formulário
   const [imageFile, setImageFile] = useState(null); // Estado para armazenar o arquivo de imagem
   const [uploadedImageUrl, setUploadedImageUrl] = useState(""); // URL da imagem carregada
@@ -56,7 +57,6 @@ function AdminProducts() {
             formData,
           })
         ).then((data) => {
-
           // Se a edição for bem-sucedida, atualiza a lista de produtos e reseta o formulário
           if (data?.payload?.success) {
             dispatch(fetchAllProducts());
@@ -109,21 +109,27 @@ function AdminProducts() {
   return (
     <Fragment>
       <div className="mb-5 w-full flex justify-end">
-        <Button onClick={() => setOpenCreateProductsDialog(true)}> {/* Botão para abrir o diálogo de adição de produtos */}
+        <Button onClick={() => setOpenCreateProductsDialog(true)}>
+          {" "}
+          {/* Botão para abrir o diálogo de adição de produtos */}
           Adicionar Novo Produto
         </Button>
       </div>
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
         {productList && productList.length > 0
-          ? productList.map((productItem) => ( // Mapeia a lista de produtos e renderiza um componente para cada um
-              <AdminProductTile
-                setFormData={setFormData} // Passa a função para atualizar os dados do formulário
-                setOpenCreateProductsDialog={setOpenCreateProductsDialog} // Passa a função para abrir o diálogo
-                setCurrentEditedId={setCurrentEditedId} // Passa a função para definir o ID do produto editado
-                product={productItem} // Passa o produto atual
-                handleDelete={handleDelete} // Passa a função de exclusão
-              />
-            ))
+          ? productList.map(
+              (
+                productItem // Mapeia a lista de produtos e renderiza um componente para cada um
+              ) => (
+                <AdminProductTile
+                  setFormData={setFormData} // Passa a função para atualizar os dados do formulário
+                  setOpenCreateProductsDialog={setOpenCreateProductsDialog} // Passa a função para abrir o diálogo
+                  setCurrentEditedId={setCurrentEditedId} // Passa a função para definir o ID do produto editado
+                  product={productItem} // Passa o produto atual
+                  handleDelete={handleDelete} // Passa a função de exclusão
+                />
+              )
+            )
           : null}
       </div>
       <Sheet
@@ -137,7 +143,10 @@ function AdminProducts() {
         <SheetContent side="right" className="overflow-auto">
           <SheetHeader>
             <SheetTitle>
-              {currentEditedId !== null ? "Editar Produto" : "Adicionar Novo Produto"} {/* Título do diálogo */}
+              {currentEditedId !== null
+                ? "Editar Produto"
+                : "Adicionar Novo Produto"}{" "}
+              {/* Título do diálogo */}
             </SheetTitle>
           </SheetHeader>
           <ProductImageUpload

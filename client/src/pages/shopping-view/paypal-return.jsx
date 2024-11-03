@@ -29,8 +29,8 @@ function PaypalReturnPage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>
-        Processando pagamento... Aguarde!</CardTitle> {/* Mensagem de processamento */}
+        <CardTitle>Processando pagamento... Aguarde!</CardTitle>{" "}
+        {/* Mensagem de processamento */}
       </CardHeader>
     </Card>
   );

@@ -39,12 +39,12 @@ const createOrder = async (req, res) => {
               name: item.title,
               sku: item.productId,
               price: item.price.toFixed(2),
-              currency: "USD",
+              currency: "R$",
               quantity: item.quantity,
             })),
           },
           amount: {
-            currency: "USD",
+            currency: "R$",
             total: totalAmount.toFixed(2),
           },
           description: "description",
@@ -58,7 +58,7 @@ const createOrder = async (req, res) => {
         console.log(error);
         return res.status(500).json({
           success: false,
-          message: "Error while creating PayPal payment",
+          message: "Erro ao criar pagamento PayPal",
         });
       } else {
         // Cria um novo pedido no banco de dados
@@ -95,7 +95,7 @@ const createOrder = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Some error occurred!",
+      message: "Ocorreu algum erro!",
     });
   }
 };
@@ -110,7 +110,7 @@ const capturePayment = async (req, res) => {
     if (!order) {
       return res.status(404).json({
         success: false,
-        message: "Order cannot be found",
+        message: "O pedido não pode ser encontrado",
       });
     }
 
@@ -126,7 +126,7 @@ const capturePayment = async (req, res) => {
       if (!product) {
         return res.status(404).json({
           success: false,
-          message: `Not enough stock for this product ${product.title}`,
+          message: `Não há estoque suficiente para este produto ${product.title}`,
         });
       }
 
@@ -143,14 +143,14 @@ const capturePayment = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Order confirmed",
+      message: "Pedido confirmado",
       data: order,
     });
   } catch (e) {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Some error occurred!",
+      message: "Ocorreu algum erro!",
     });
   }
 };
@@ -165,7 +165,7 @@ const getAllOrdersByUser = async (req, res) => {
     if (!orders.length) {
       return res.status(404).json({
         success: false,
-        message: "No orders found!",
+        message: "Nenhum pedido encontrado!",
       });
     }
 
@@ -177,7 +177,7 @@ const getAllOrdersByUser = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Some error occurred!",
+      message: "Ocorreu algum erro!",
     });
   }
 };
@@ -192,7 +192,7 @@ const getOrderDetails = async (req, res) => {
     if (!order) {
       return res.status(404).json({
         success: false,
-        message: "Order not found!",
+        message: "Pedido não encontrado!",
       });
     }
 
@@ -204,7 +204,7 @@ const getOrderDetails = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Some error occurred!",
+      message: "Ocorreu algum erro!",
     });
   }
 };

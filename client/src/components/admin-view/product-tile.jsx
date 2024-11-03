@@ -10,18 +10,27 @@ function AdminProductTile({
   handleDelete, // Função para excluir o produto
 }) {
   return (
-    <Card className="w-full max-w-sm mx-auto"> {/* Estrutura do card, com largura máxima de 100% e centralizado */}
+    <Card className="w-full max-w-sm mx-auto">
+      {" "}
+      {/* Estrutura do card, com largura máxima de 100% e centralizado */}
       <div>
-        <div className="relative"> {/* Container para a imagem */}
+        <div className="relative">
+          {" "}
+          {/* Container para a imagem */}
           <img
             src={product?.image} // Exibe a imagem do produto
             alt={product?.title} // Texto alternativo da imagem
             className="w-full h-[300px] object-cover rounded-t-lg" // Estilos para a imagem (largura total, altura fixa, e bordas arredondadas no topo)
           />
         </div>
-        <CardContent> {/* Conteúdo do card */}
-          <h2 className="text-xl font-bold mb-2 mt-2">{product?.title}</h2> {/* Título do produto */}
-          <div className="flex justify-between items-center mb-2"> {/* Div que contém os preços (normal e de venda) */}
+        <CardContent>
+          {" "}
+          {/* Conteúdo do card */}
+          <h2 className="text-xl font-bold mb-2 mt-2">{product?.title}</h2>{" "}
+          {/* Título do produto */}
+          <div className="flex justify-between items-center mb-2">
+            {" "}
+            {/* Div que contém os preços (normal e de venda) */}
             <span
               className={`${
                 product?.salePrice > 0 ? "line-through" : "" // Aplica "line-through" se o produto estiver em promoção
@@ -34,7 +43,9 @@ function AdminProductTile({
             ) : null}
           </div>
         </CardContent>
-        <CardFooter className="flex justify-between items-center"> {/* Rodapé do card */}
+        <CardFooter className="flex justify-between items-center">
+          {" "}
+          {/* Rodapé do card */}
           <Button
             onClick={() => {
               setOpenCreateProductsDialog(true); // Abre o modal para editar o produto
@@ -44,7 +55,8 @@ function AdminProductTile({
           >
             Editar {/* Botão para editar o produto */}
           </Button>
-          <Button onClick={() => handleDelete(product?._id)}>Deletar</Button> {/* Botão para deletar o produto */}
+          <Button onClick={() => handleDelete(product?._id)}>Deletar</Button>{" "}
+          {/* Botão para deletar o produto */}
         </CardFooter>
       </div>
     </Card>

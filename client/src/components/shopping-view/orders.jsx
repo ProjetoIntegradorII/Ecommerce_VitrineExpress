@@ -37,65 +37,89 @@ function ShoppingOrders() {
     if (orderDetails !== null) setOpenDetailsDialog(true); // Abre o diálogo se os detalhes do pedido forem carregados
   }, [orderDetails]);
 
-
   return (
-    <Card> {/* Componente de card que envolve a tabela de pedidos */}
+    <Card>
+      {" "}
+      {/* Componente de card que envolve a tabela de pedidos */}
       <CardHeader>
-        <CardTitle>Histórico de Pedidos</CardTitle> {/* Título do histórico de pedidos */}
+        <CardTitle>Histórico de Pedidos</CardTitle>{" "}
+        {/* Título do histórico de pedidos */}
       </CardHeader>
       <CardContent>
-        <Table> {/* Componente de tabela para exibir a lista de pedidos */}
+        <Table>
+          {" "}
+          {/* Componente de tabela para exibir a lista de pedidos */}
           <TableHeader>
             <TableRow>
-              <TableHead>ID do Pedido</TableHead> {/* Cabeçalho da tabela para ID do pedido */}
-              <TableHead>Data do Pedido</TableHead> {/* Cabeçalho da tabela para data do pedido */}
-              <TableHead>Status do Pedido</TableHead> {/* Cabeçalho da tabela para status do pedido */}
-              <TableHead>Preço do Pedido</TableHead> {/* Cabeçalho da tabela para preço do pedido */}
+              <TableHead>ID do Pedido</TableHead>{" "}
+              {/* Cabeçalho da tabela para ID do pedido */}
+              <TableHead>Data do Pedido</TableHead>{" "}
+              {/* Cabeçalho da tabela para data do pedido */}
+              <TableHead>Status do Pedido</TableHead>{" "}
+              {/* Cabeçalho da tabela para status do pedido */}
+              <TableHead>Preço do Pedido</TableHead>{" "}
+              {/* Cabeçalho da tabela para preço do pedido */}
               <TableHead>
-                <span className="sr-only">Detalhes</span> {/* Acessibilidade: título para detalhes */}
+                <span className="sr-only">Detalhes</span>{" "}
+                {/* Acessibilidade: título para detalhes */}
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {orderList && orderList.length > 0
-              ? orderList.map((orderItem) => ( // Mapeia cada item da lista de pedidos
-                  <TableRow key={orderItem._id}> {/* Cada linha da tabela para um pedido */}
-                    <TableCell>{orderItem?._id}</TableCell> {/* Exibe ID do pedido */}
-                    <TableCell>{orderItem?.orderDate.split("T")[0]}</TableCell> {/* Exibe data do pedido */}
-                    <TableCell>
-                      <Badge
-                        className={`py-1 px-3 ${
-                          orderItem?.orderStatus === "confirmed"
-                            ? "bg-green-500"
-                            : orderItem?.orderStatus === "rejected"
-                            ? "bg-red-600"
-                            : "bg-black"
-                        }`}
-                      >
-                        {orderItem?.orderStatus} {/* Exibe status do pedido com um badge */}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>R${orderItem?.totalAmount}</TableCell> {/* Exibe preço total do pedido */}
-                    <TableCell>
-                      <Dialog
-                        open={openDetailsDialog}
-                        onOpenChange={() => {
-                          setOpenDetailsDialog(false); // Fecha o diálogo ao mudar o estado
-                          dispatch(resetOrderDetails()); // Reseta detalhes do pedido ao fechar o diálogo
-                        }}
-                      >
-                        <Button
-                          onClick={() =>
-                            handleFetchOrderDetails(orderItem?._id) // Obtém detalhes do pedido ao clicar no botão
-                          }
+              ? orderList.map(
+                  (
+                    orderItem // Mapeia cada item da lista de pedidos
+                  ) => (
+                    <TableRow key={orderItem._id}>
+                      {" "}
+                      {/* Cada linha da tabela para um pedido */}
+                      <TableCell>{orderItem?._id}</TableCell>{" "}
+                      {/* Exibe ID do pedido */}
+                      <TableCell>
+                        {orderItem?.orderDate.split("T")[0]}
+                      </TableCell>{" "}
+                      {/* Exibe data do pedido */}
+                      <TableCell>
+                        <Badge
+                          className={`py-1 px-3 ${
+                            orderItem?.orderStatus === "confirmed"
+                              ? "bg-green-500"
+                              : orderItem?.orderStatus === "rejected"
+                              ? "bg-red-600"
+                              : "bg-black"
+                          }`}
                         >
-                          Ver Detalhes
-                        </Button>
-                        <ShoppingOrderDetailsView orderDetails={orderDetails} /> {/* Componente para exibir detalhes do pedido */}
-                      </Dialog>
-                    </TableCell>
-                  </TableRow>
-                ))
+                          {orderItem?.orderStatus}{" "}
+                          {/* Exibe status do pedido com um badge */}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>R${orderItem?.totalAmount}</TableCell>{" "}
+                      {/* Exibe preço total do pedido */}
+                      <TableCell>
+                        <Dialog
+                          open={openDetailsDialog}
+                          onOpenChange={() => {
+                            setOpenDetailsDialog(false); // Fecha o diálogo ao mudar o estado
+                            dispatch(resetOrderDetails()); // Reseta detalhes do pedido ao fechar o diálogo
+                          }}
+                        >
+                          <Button
+                            onClick={
+                              () => handleFetchOrderDetails(orderItem?._id) // Obtém detalhes do pedido ao clicar no botão
+                            }
+                          >
+                            Ver Detalhes
+                          </Button>
+                          <ShoppingOrderDetailsView
+                            orderDetails={orderDetails}
+                          />{" "}
+                          {/* Componente para exibir detalhes do pedido */}
+                        </Dialog>
+                      </TableCell>
+                    </TableRow>
+                  )
+                )
               : null}
           </TableBody>
         </Table>

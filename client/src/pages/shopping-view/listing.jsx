@@ -32,7 +32,6 @@ function createSearchParamsHelper(filterParams) {
     }
   }
 
-  
   return queryParams.join("&"); // Retorna a string de parâmetros de busca
 }
 
@@ -72,7 +71,9 @@ function ShoppingListing() {
         cpyFilters[getSectionId].indexOf(getCurrentOption);
 
       if (indexOfCurrentOption === -1)
-        cpyFilters[getSectionId].push(getCurrentOption); // Adiciona a opção aos filtros
+        cpyFilters[getSectionId].push(
+          getCurrentOption
+        ); // Adiciona a opção aos filtros
       else cpyFilters[getSectionId].splice(indexOfCurrentOption, 1); // Remove a opção dos filtros
     }
 
@@ -85,35 +86,35 @@ function ShoppingListing() {
     dispatch(fetchProductDetails(getCurrentProductId)); // Despacha a ação para buscar detalhes do produto
   }
 
-// Função para adicionar um produto ao carrinho
-function handleAddtoCart(getCurrentProductId, getTotalStock) {
-  // Verifica se o usuário está logado
-  if (!user) {
-    toast({
-      title: "Você precisa estar logado para adicionar produtos ao carrinho.", // Mensagem solicitando login
-      variant: "destructive",
-    });
-    return; // Retorna se o usuário não estiver logado
-  }
+  // Função para adicionar um produto ao carrinho
+  function handleAddtoCart(getCurrentProductId, getTotalStock) {
+    // Verifica se o usuário está logado
+    if (!user) {
+      toast({
+        title: "Você precisa estar logado para adicionar produtos ao carrinho.", // Mensagem solicitando login
+        variant: "destructive",
+      });
+      return; // Retorna se o usuário não estiver logado
+    }
 
-  let getCartItems = cartItems.items || [];
+    let getCartItems = cartItems.items || [];
 
-  if (getCartItems.length) {
-    const indexOfCurrentItem = getCartItems.findIndex(
-      (item) => item.productId === getCurrentProductId
-    );
-    if (indexOfCurrentItem > -1) {
-      const getQuantity = getCartItems[indexOfCurrentItem].quantity;
-      if (getQuantity + 1 > getTotalStock) {
-        // Se a quantidade desejada exceder o estoque
-        toast({
-          title: `Apenas ${getQuantity} pode ser adicionadas ao carrinho`, // Mensagem de erro
-          variant: "destructive",
-        });
-        return;
+    if (getCartItems.length) {
+      const indexOfCurrentItem = getCartItems.findIndex(
+        (item) => item.productId === getCurrentProductId
+      );
+      if (indexOfCurrentItem > -1) {
+        const getQuantity = getCartItems[indexOfCurrentItem].quantity;
+        if (getQuantity + 1 > getTotalStock) {
+          // Se a quantidade desejada exceder o estoque
+          toast({
+            title: `Apenas ${getQuantity} pode ser adicionadas ao carrinho`, // Mensagem de erro
+            variant: "destructive",
+          });
+          return;
+        }
       }
     }
-  }
 
     dispatch(
       addToCart({
@@ -158,16 +159,17 @@ function handleAddtoCart(getCurrentProductId, getTotalStock) {
     if (productDetails !== null) setOpenDetailsDialog(true);
   }, [productDetails]);
 
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
-      <ProductFilter filters={filters} handleFilter={handleFilter} /> {/* Componente de filtro */}
+      <ProductFilter filters={filters} handleFilter={handleFilter} />{" "}
+      {/* Componente de filtro */}
       <div className="bg-background w-full rounded-lg shadow-sm">
         <div className="p-4 border-b flex items-center justify-between">
           <h2 className="text-lg font-extrabold">Todos os Produtos</h2>
           <div className="flex items-center gap-3">
             <span className="text-muted-foreground">
-              {productList?.length} Produtos {/* Mostra a quantidade de produtos */}
+              {productList?.length} Produtos{" "}
+              {/* Mostra a quantidade de produtos */}
             </span>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -176,7 +178,8 @@ function handleAddtoCart(getCurrentProductId, getTotalStock) {
                   size="sm"
                   className="flex items-center gap-1"
                 >
-                  <ArrowUpDownIcon className="h-4 w-4" /> {/* Ícone de ordenação */}
+                  <ArrowUpDownIcon className="h-4 w-4" />{" "}
+                  {/* Ícone de ordenação */}
                   <span>Ordenar por</span>
                 </Button>
               </DropdownMenuTrigger>

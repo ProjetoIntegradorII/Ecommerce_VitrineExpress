@@ -27,52 +27,52 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
     setRating(getRating); // Atualiza a classificação
   }
 
-// Função para adicionar um produto ao carrinho
-function handleAddToCart(getCurrentProductId, getTotalStock) {
-  // Verifica se o usuário está logado
-  if (!user) {
-    toast({
-      title: "Por favor, faça login para adicionar itens ao carrinho", // Mensagem solicitando login
-      variant: "destructive",
-    });
-    return; // Retorna se o usuário não estiver logado
-  }
+  // Função para adicionar um produto ao carrinho
+  function handleAddToCart(getCurrentProductId, getTotalStock) {
+    // Verifica se o usuário está logado
+    if (!user) {
+      toast({
+        title: "Por favor, faça login para adicionar itens ao carrinho", // Mensagem solicitando login
+        variant: "destructive",
+      });
+      return; // Retorna se o usuário não estiver logado
+    }
 
-  let getCartItems = cartItems.items || []; // Obtém os itens do carrinho ou um array vazio
+    let getCartItems = cartItems.items || []; // Obtém os itens do carrinho ou um array vazio
 
-  // Verifica se o produto já está no carrinho e se a quantidade não excede o estoque
-  if (getCartItems.length) {
-    const indexOfCurrentItem = getCartItems.findIndex(
-      (item) => item.productId === getCurrentProductId
-    );
-    if (indexOfCurrentItem > -1) {
-      const getQuantity = getCartItems[indexOfCurrentItem].quantity;
-      if (getQuantity + 1 > getTotalStock) {
-        toast({
-          title: `Apenas ${getQuantity} pode ser adicionadas ao carrinho`, // Exibe um toast se o estoque for insuficiente
-          variant: "destructive",
-        });
-        return;
+    // Verifica se o produto já está no carrinho e se a quantidade não excede o estoque
+    if (getCartItems.length) {
+      const indexOfCurrentItem = getCartItems.findIndex(
+        (item) => item.productId === getCurrentProductId
+      );
+      if (indexOfCurrentItem > -1) {
+        const getQuantity = getCartItems[indexOfCurrentItem].quantity;
+        if (getQuantity + 1 > getTotalStock) {
+          toast({
+            title: `Apenas ${getQuantity} pode ser adicionadas ao carrinho`, // Exibe um toast se o estoque for insuficiente
+            variant: "destructive",
+          });
+          return;
+        }
       }
     }
-  }
 
-  // Adiciona o produto ao carrinho
-  dispatch(
-    addToCart({
-      userId: user.id, // Agora garantido que user não é null
-      productId: getCurrentProductId,
-      quantity: 1,
-    })
-  ).then((data) => {
-    if (data?.payload?.success) {
-      dispatch(fetchCartItems(user.id)); // Atualiza os itens do carrinho
-      toast({
-        title: "O produto foi adicionado ao carrinho", // Exibe um toast de confirmação
-      });
-    }
-  });
-}
+    // Adiciona o produto ao carrinho
+    dispatch(
+      addToCart({
+        userId: user.id, // Agora garantido que user não é null
+        productId: getCurrentProductId,
+        quantity: 1,
+      })
+    ).then((data) => {
+      if (data?.payload?.success) {
+        dispatch(fetchCartItems(user.id)); // Atualiza os itens do carrinho
+        toast({
+          title: "O produto foi adicionado ao carrinho", // Exibe um toast de confirmação
+        });
+      }
+    });
+  }
 
   // Função para fechar o diálogo
   function handleDialogClose() {
@@ -130,7 +130,8 @@ function handleAddToCart(getCurrentProductId, getTotalStock) {
         </div>
         <div>
           <div>
-            <h1 className="text-3xl font-extrabold">{productDetails?.title}</h1> {/* Título do produto */}
+            <h1 className="text-3xl font-extrabold">{productDetails?.title}</h1>{" "}
+            {/* Título do produto */}
             <p className="text-muted-foreground text-2xl mb-5 mt-4">
               {productDetails?.description} {/* Descrição do produto */}
             </p>
@@ -151,7 +152,8 @@ function handleAddToCart(getCurrentProductId, getTotalStock) {
           </div>
           <div className="flex items-center gap-2 mt-2">
             <div className="flex items-center gap-0.5">
-              <StarRatingComponent rating={averageReview} /> {/* Componente para exibir classificação média */}
+              <StarRatingComponent rating={averageReview} />{" "}
+              {/* Componente para exibir classificação média */}
             </div>
             <span className="text-muted-foreground">
               ({averageReview.toFixed(2)}) {/* Exibe a média das avaliações */}
@@ -160,7 +162,8 @@ function handleAddToCart(getCurrentProductId, getTotalStock) {
           <div className="mt-5 mb-5">
             {productDetails?.totalStock === 0 ? (
               <Button className="w-full opacity-60 cursor-not-allowed">
-                Fora de estoque {/* Botão desativado se o produto estiver fora de estoque */}
+                Fora de estoque{" "}
+                {/* Botão desativado se o produto estiver fora de estoque */}
               </Button>
             ) : (
               <Button
@@ -183,17 +186,22 @@ function handleAddToCart(getCurrentProductId, getTotalStock) {
               {reviews && reviews.length > 0 ? (
                 reviews.map((reviewItem) => (
                   <div className="flex gap-4" key={reviewItem._id}>
-                    <Avatar className="w-10 h-10 border"> {/* Exibe o avatar do revisor */}
+                    <Avatar className="w-10 h-10 border">
+                      {" "}
+                      {/* Exibe o avatar do revisor */}
                       <AvatarFallback>
-                        {reviewItem?.userName[0].toUpperCase()} {/* Inicial do nome do revisor */}
+                        {reviewItem?.userName[0].toUpperCase()}{" "}
+                        {/* Inicial do nome do revisor */}
                       </AvatarFallback>
                     </Avatar>
                     <div className="grid gap-1">
                       <div className="flex items-center gap-2">
-                        <h3 className="font-bold">{reviewItem?.userName}</h3> {/* Nome do revisor */}
+                        <h3 className="font-bold">{reviewItem?.userName}</h3>{" "}
+                        {/* Nome do revisor */}
                       </div>
                       <div className="flex items-center gap-0.5">
-                        <StarRatingComponent rating={reviewItem?.reviewValue} /> {/* Exibe a classificação dada na revisão */}
+                        <StarRatingComponent rating={reviewItem?.reviewValue} />{" "}
+                        {/* Exibe a classificação dada na revisão */}
                       </div>
                       <p className="text-muted-foreground">
                         {reviewItem.reviewMessage} {/* Mensagem da revisão */}
@@ -206,7 +214,8 @@ function handleAddToCart(getCurrentProductId, getTotalStock) {
               )}
             </div>
             <div className="mt-10 flex-col flex gap-2">
-              <Label>Avalie o produto</Label> {/* Rótulo para a seção de nova avaliação */}
+              <Label>Avalie o produto</Label>{" "}
+              {/* Rótulo para a seção de nova avaliação */}
               <div className="flex gap-1">
                 <StarRatingComponent
                   rating={rating}

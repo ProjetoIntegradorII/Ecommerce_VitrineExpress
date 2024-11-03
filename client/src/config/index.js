@@ -60,7 +60,8 @@ export const addProductFormElements = [
     label: "Categoria",
     name: "category",
     componentType: "select", // Campo de seleção
-    options: [ // Opções disponíveis para seleção
+    options: [
+      // Opções disponíveis para seleção
       { id: "papelaria", label: "Papelaria" },
       { id: "aviamento", label: "Aviamento" },
       { id: "outros", label: "Outros" },

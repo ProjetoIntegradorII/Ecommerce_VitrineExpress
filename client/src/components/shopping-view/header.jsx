@@ -1,14 +1,22 @@
-import { HousePlug, LogOut, LogIn, Menu, ShoppingCart, UserCog, HelpCircle } from "lucide-react"; // Adiciona ícone de interrogação
+import {
+  Store,
+  LogOut,
+  LogIn,
+  Menu,
+  ShoppingCart,
+  UserCog,
+  HelpCircle,
+} from "lucide-react";
 import {
   Link,
   useLocation,
   useNavigate,
   useSearchParams,
-} from "react-router-dom"; 
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet"; 
-import { Button } from "../ui/button"; 
-import { useDispatch, useSelector } from "react-redux"; 
-import { shoppingViewHeaderMenuItems } from "@/config"; 
+} from "react-router-dom";
+import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Button } from "../ui/button";
+import { useDispatch, useSelector } from "react-redux";
+import { shoppingViewHeaderMenuItems } from "@/config";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,27 +24,27 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu"; 
-import { Avatar, AvatarFallback } from "../ui/avatar"; 
-import { logoutUser } from "@/store/auth-slice"; 
-import UserCartWrapper from "./cart-wrapper"; 
-import { useEffect, useState } from "react"; 
-import { fetchCartItems } from "@/store/shop/cart-slice"; 
-import { Label } from "../ui/label"; 
+} from "../ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "../ui/avatar";
+import { logoutUser } from "@/store/auth-slice";
+import UserCartWrapper from "./cart-wrapper";
+import { useEffect, useState } from "react";
+import { fetchCartItems } from "@/store/shop/cart-slice";
+import { Label } from "../ui/label";
 
 function MenuItems() {
-  const navigate = useNavigate(); 
-  const location = useLocation(); 
-  const [searchParams, setSearchParams] = useSearchParams(); 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   function handleNavigate(getCurrentMenuItem) {
-    sessionStorage.removeItem("filters"); 
+    sessionStorage.removeItem("filters");
     const currentFilter =
       getCurrentMenuItem.id !== "home" &&
       getCurrentMenuItem.id !== "products" &&
       getCurrentMenuItem.id !== "search"
         ? {
-            category: [getCurrentMenuItem.id], 
+            category: [getCurrentMenuItem.id],
           }
         : null;
 
@@ -65,19 +73,19 @@ function MenuItems() {
 }
 
 function HeaderRightContent() {
-  const { user, isAuthenticated } = useSelector((state) => state.auth); 
-  const { cartItems } = useSelector((state) => state.shopCart); 
-  const [openCartSheet, setOpenCartSheet] = useState(false); 
-  const navigate = useNavigate(); 
-  const dispatch = useDispatch(); 
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  const { cartItems } = useSelector((state) => state.shopCart);
+  const [openCartSheet, setOpenCartSheet] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleLogout() {
-    dispatch(logoutUser()); 
+    dispatch(logoutUser());
   }
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(fetchCartItems(user?.id)); 
+      dispatch(fetchCartItems(user?.id));
     }
   }, [dispatch, isAuthenticated, user]);
 
@@ -101,17 +109,18 @@ function HeaderRightContent() {
           cartItems={
             cartItems && cartItems.items && cartItems.items.length > 0
               ? cartItems.items
-              : [] 
+              : []
           }
         />
       </Sheet>
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-        <Avatar className="bg-black">
+          <Avatar className="bg-black">
             {isAuthenticated ? (
               <AvatarFallback className="bg-black text-white font-extrabold">
-                {user?.userName[0].toUpperCase()} {/* Exibe a inicial do nome do usuário */}
+                {user?.userName[0].toUpperCase()}{" "}
+                {/* Exibe a inicial do nome do usuário */}
               </AvatarFallback>
             ) : (
               <AvatarFallback className="bg-black text-white font-extrabold">
@@ -151,13 +160,13 @@ function HeaderRightContent() {
 }
 
 function ShoppingHeader() {
-  const { isAuthenticated } = useSelector((state) => state.auth); 
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
         <Link to="/shop/home" className="flex items-center gap-2">
-          <HousePlug className="h-6 w-6" />
+          <Store className="h-6 w-6" />
           <span className="font-bold">Vitrine Express</span>
         </Link>
         <Sheet>

@@ -14,34 +14,62 @@ const filterTitles = {
 // Componente para aplicar filtros em produtos
 function ProductFilter({ filters, handleFilter }) {
   return (
-    <div className="bg-background rounded-lg shadow-sm"> {/* Container do filtro com fundo e sombra */}
-      <div className="p-4 border-b"> {/* Cabeçalho do filtro */}
-        <h2 className="text-lg font-extrabold">Filtro</h2> {/* Título do filtro */}
+    <div className="bg-background rounded-lg shadow-sm">
+      {" "}
+      {/* Container do filtro com fundo e sombra */}
+      <div className="p-4 border-b">
+        {" "}
+        {/* Cabeçalho do filtro */}
+        <h2 className="text-lg font-extrabold">Filtro</h2>{" "}
+        {/* Título do filtro */}
       </div>
-      <div className="p-4 space-y-4"> {/* Espaçamento interno e entre filtros */}
-        {Object.keys(filterOptions).map((keyItem) => ( // Itera sobre as chaves de filterOptions
-          <Fragment key={keyItem}> {/* Usando Fragment para agrupar elementos */}
-            <div>
-              <h3 className="text-base font-bold">{filterTitles[keyItem]}</h3> {/* Título da categoria de filtro usando o mapeamento */}
-              <div className="grid gap-2 mt-2"> {/* Grid para opções de filtro */}
-                {filterOptions[keyItem].map((option) => ( // Itera sobre as opções de filtro
-                  <Label className="flex font-medium items-center gap-2" key={option.id}> {/* Label para cada opção */}
-                    <Checkbox
-                      checked={filters && // Verifica se filters existem e têm opções
-                        Object.keys(filters).length > 0 &&
-                        filters[keyItem] &&
-                        filters[keyItem].indexOf(option.id) > -1 // Verifica se a opção está selecionada
-                      }
-                      onCheckedChange={() => handleFilter(keyItem, option.id)} // Chama a função de filtro ao alterar o estado do checkbox
-                    />
-                    {option.label} {/* Rótulo da opção */}
-                  </Label>
-                ))}
+      <div className="p-4 space-y-4">
+        {" "}
+        {/* Espaçamento interno e entre filtros */}
+        {Object.keys(filterOptions).map(
+          (
+            keyItem // Itera sobre as chaves de filterOptions
+          ) => (
+            <Fragment key={keyItem}>
+              {" "}
+              {/* Usando Fragment para agrupar elementos */}
+              <div>
+                <h3 className="text-base font-bold">{filterTitles[keyItem]}</h3>{" "}
+                {/* Título da categoria de filtro usando o mapeamento */}
+                <div className="grid gap-2 mt-2">
+                  {" "}
+                  {/* Grid para opções de filtro */}
+                  {filterOptions[keyItem].map(
+                    (
+                      option // Itera sobre as opções de filtro
+                    ) => (
+                      <Label
+                        className="flex font-medium items-center gap-2"
+                        key={option.id}
+                      >
+                        {" "}
+                        {/* Label para cada opção */}
+                        <Checkbox
+                          checked={
+                            filters && // Verifica se filters existem e têm opções
+                            Object.keys(filters).length > 0 &&
+                            filters[keyItem] &&
+                            filters[keyItem].indexOf(option.id) > -1 // Verifica se a opção está selecionada
+                          }
+                          onCheckedChange={() =>
+                            handleFilter(keyItem, option.id)
+                          } // Chama a função de filtro ao alterar o estado do checkbox
+                        />
+                        {option.label} {/* Rótulo da opção */}
+                      </Label>
+                    )
+                  )}
+                </div>
               </div>
-            </div>
-            <Separator /> {/* Separador entre categorias de filtro */}
-          </Fragment>
-        ))}
+              <Separator /> {/* Separador entre categorias de filtro */}
+            </Fragment>
+          )
+        )}
       </div>
     </div>
   );

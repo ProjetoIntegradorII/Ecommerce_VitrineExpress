@@ -16,11 +16,12 @@ function AdminHeader({ setOpen }) {
   return (
     <header className="flex items-center justify-between px-4 py-3 bg-background border-b">
       {/* Container do cabeçalho com layout flexível, espaçamento e borda inferior */}
-      
+
       <Button onClick={() => setOpen(true)} className="lg:hidden sm:block">
         {/* Botão para abrir o menu em telas pequenas, visível apenas em telas menores */}
         <AlignJustify /> {/* Ícone para indicar o menu */}
-        <span className="sr-only">Alternar Menu</span> {/* Texto acessível para leitores de tela */}
+        <span className="sr-only">Alternar Menu</span>{" "}
+        {/* Texto acessível para leitores de tela */}
       </Button>
 
       <div className="flex flex-1 justify-end">

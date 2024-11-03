@@ -38,7 +38,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
     if (addressList.length >= 3 && currentEditedId === null) {
       setFormData(initialAddressFormData); // Reseta o formulário
       toast({
-        title: "You can add max 3 addresses", // Mensagem de erro
+        title: "Você pode adicionar no máximo 3 endereços", // Mensagem de erro
         variant: "destructive",
       });
       return; // Sai da função
@@ -47,7 +47,8 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
     // Se um endereço está sendo editado
     currentEditedId !== null
       ? dispatch(
-          editaAddress({ // Dispara a ação de edição
+          editaAddress({
+            // Dispara a ação de edição
             userId: user?.id, // ID do usuário
             addressId: currentEditedId, // ID do endereço a ser editado
             formData, // Dados do formulário
@@ -59,12 +60,13 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
             setCurrentEditedId(null); // Reseta o ID do endereço sendo editado
             setFormData(initialAddressFormData); // Reseta o formulário
             toast({
-              title: "Address updated successfully", // Mensagem de sucesso
+              title: "Endereço atualizado com sucesso", // Mensagem de sucesso
             });
           }
         })
       : dispatch(
-          addNewAddress({ // Dispara a ação de adição de novo endereço
+          addNewAddress({
+            // Dispara a ação de adição de novo endereço
             ...formData, // Dados do formulário
             userId: user?.id, // ID do usuário
           })
@@ -74,7 +76,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
             dispatch(fetchAllAddresses(user?.id)); // Atualiza a lista de endereços
             setFormData(initialAddressFormData); // Reseta o formulário
             toast({
-              title: "Address added successfully", // Mensagem de sucesso
+              title: "Endereço adicionado com sucesso", // Mensagem de sucesso
             });
           }
         });
@@ -83,7 +85,8 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
   // Função para gerenciar a exclusão de um endereço
   function handleDeleteAddress(getCurrentAddress) {
     dispatch(
-      deleteAddress({ // Dispara a ação de exclusão
+      deleteAddress({
+        // Dispara a ação de exclusão
         userId: user?.id, // ID do usuário
         addressId: getCurrentAddress._id, // ID do endereço a ser excluído
       })
@@ -123,7 +126,6 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
     dispatch(fetchAllAddresses(user?.id)); // Busca todos os endereços
   }, [dispatch]);
 
-
   return (
     <Card>
       <div className="mb-5 p-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -144,7 +146,9 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
       <CardHeader>
         <CardTitle>
           {/* Título do formulário dependendo se está editando ou adicionando */}
-          {currentEditedId !== null ? "Editar endereço" : "Adicionar novo endereço"}
+          {currentEditedId !== null
+            ? "Editar endereço"
+            : "Adicionar novo endereço"}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">

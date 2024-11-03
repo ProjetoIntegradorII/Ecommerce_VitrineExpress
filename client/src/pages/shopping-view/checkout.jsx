@@ -100,7 +100,8 @@ function ShoppingCheckout() {
   return (
     <div className="flex flex-col">
       <div className="relative h-[300px] w-full overflow-hidden">
-        <img src={img} className="h-full w-full object-cover object-center" /> {/* Imagem de cabeçalho */}
+        <img src={img} className="h-full w-full object-cover object-center" />{" "}
+        {/* Imagem de cabeçalho */}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5 p-5">
         {/* Componente de endereço */}
@@ -118,7 +119,8 @@ function ShoppingCheckout() {
           <div className="mt-8 space-y-4">
             <div className="flex justify-between">
               <span className="font-bold">Total</span>
-              <span className="font-bold">R${totalCartAmount}</span> {/* Exibe o total do carrinho */}
+              <span className="font-bold">R${totalCartAmount}</span>{" "}
+              {/* Exibe o total do carrinho */}
             </div>
           </div>
           <div className="mt-4 w-full">
@@ -126,7 +128,8 @@ function ShoppingCheckout() {
             <Button onClick={handleInitiatePaypalPayment} className="w-full">
               {isPaymentStart
                 ? "Processando pagamento ..." // Texto quando o pagamento está sendo processado
-                : "Finalizar compra"} {/* Texto quando está pronto para checkout */}
+                : "Finalizar compra"}{" "}
+              {/* Texto quando está pronto para checkout */}
             </Button>
           </div>
         </div>

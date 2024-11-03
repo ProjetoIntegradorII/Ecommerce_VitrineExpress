@@ -3,11 +3,11 @@ import { Button } from "../ui/button"; // Importa o componente de botão persona
 
 // Define o componente StarRatingComponent que recebe a avaliação e uma função para mudar a avaliação
 function StarRatingComponent({ rating, handleRatingChange }) {
-
   // Mapeia um array de 1 a 5 para renderizar as estrelas de avaliação
   return [1, 2, 3, 4, 5].map((star) => (
     <Button
-      className={`p-2 rounded-full transition-colors ${ // Estilos do botão
+      className={`p-2 rounded-full transition-colors ${
+        // Estilos do botão
         star <= rating // Verifica se a estrela atual deve ser preenchida
           ? "text-yellow-500 hover:bg-black" // Estilo para estrelas preenchidas
           : "text-black hover:bg-primary hover:text-primary-foreground" // Estilo para estrelas vazias
@@ -17,7 +17,8 @@ function StarRatingComponent({ rating, handleRatingChange }) {
       onClick={handleRatingChange ? () => handleRatingChange(star) : null} // Chama a função para mudar a avaliação ao clicar
     >
       <StarIcon
-        className={`w-6 h-6 ${ // Tamanho do ícone da estrela
+        className={`w-6 h-6 ${
+          // Tamanho do ícone da estrela
           star <= rating ? "fill-yellow-500" : "fill-black" // Preenche a estrela com a cor apropriada
         }`}
       />

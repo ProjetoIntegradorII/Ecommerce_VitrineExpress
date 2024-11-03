@@ -7,7 +7,13 @@ function CheckAuth({ isAuthenticated, user, children }) {
   console.log(location.pathname, isAuthenticated); // Loga o caminho atual e o estado de autenticação.
 
   // Define as páginas públicas que não requerem autenticação
-  const publicPages = ["/", "/shop/home", "/shop/listing", "/shop/search", "/shop/about"];
+  const publicPages = [
+    "/",
+    "/shop/home",
+    "/shop/listing",
+    "/shop/search",
+    "/shop/about",
+  ];
 
   // Verifica se a página atual é pública
   const isPublicPage = publicPages.includes(location.pathname);
@@ -37,7 +43,8 @@ function CheckAuth({ isAuthenticated, user, children }) {
   // Se o usuário estiver autenticado e tentar acessar as páginas de login ou registro
   if (
     isAuthenticated &&
-    (location.pathname.includes("/auth/login") || location.pathname.includes("/auth/register"))
+    (location.pathname.includes("/auth/login") ||
+      location.pathname.includes("/auth/register"))
   ) {
     // Se o usuário for um administrador, redireciona para o dashboard do admin
     if (user?.role === "admin") {

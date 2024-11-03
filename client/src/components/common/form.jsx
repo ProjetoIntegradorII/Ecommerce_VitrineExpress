@@ -55,7 +55,8 @@ function CommonForm({
             value={value}
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder={getControlItem.label} /> {/* Valor padrão */}
+              <SelectValue placeholder={getControlItem.label} />{" "}
+              {/* Valor padrão */}
             </SelectTrigger>
             <SelectContent>
               {getControlItem.options && getControlItem.options.length > 0
@@ -110,12 +111,16 @@ function CommonForm({
   }
 
   return (
-    <form onSubmit={onSubmit}> {/* Formulário que chama onSubmit ao ser enviado */}
+    <form onSubmit={onSubmit}>
+      {" "}
+      {/* Formulário que chama onSubmit ao ser enviado */}
       <div className="flex flex-col gap-3">
         {formControls.map((controlItem) => (
           <div className="grid w-full gap-1.5" key={controlItem.name}>
-            <Label className="mb-1">{controlItem.label}</Label> {/* Rótulo para o controle */}
-            {renderInputsByComponentType(controlItem)} {/* Renderiza o input correspondente */}
+            <Label className="mb-1">{controlItem.label}</Label>{" "}
+            {/* Rótulo para o controle */}
+            {renderInputsByComponentType(controlItem)}{" "}
+            {/* Renderiza o input correspondente */}
           </div>
         ))}
       </div>

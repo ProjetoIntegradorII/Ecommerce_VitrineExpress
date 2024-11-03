@@ -22,11 +22,14 @@ import { Skeleton } from "@/components/ui/skeleton";
 import PaypalReturnPage from "./pages/shopping-view/paypal-return";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
 import SearchProducts from "./pages/shopping-view/search";
+import ShoppingAbout from "./pages/shopping-view/about";
 
 function App() {
-  const { user, isAuthenticated, isLoading } = useSelector((state) => state.auth);
+  const { user, isAuthenticated, isLoading } = useSelector(
+    (state) => state.auth
+  );
   const dispatch = useDispatch();
-  const location = useLocation();  // Obtém a localização atual
+  const location = useLocation(); // Obtém a localização atual
 
   useEffect(() => {
     dispatch(checkAuth());
@@ -42,8 +45,8 @@ function App() {
 
         {/* Rotas de autenticação */}
         <Route path="/auth" element={<AuthLayout />}>
-          <Route 
-            path="login" 
+          <Route
+            path="login"
             element={
               <AuthLogin redirectTo={location.state?.from || "/shop/home"} /> // Redireciona para a última página pública ou Home
             }
@@ -71,13 +74,11 @@ function App() {
           <Route path="home" element={<ShoppingHome />} />
           <Route path="listing" element={<ShoppingListing />} />
           <Route path="search" element={<SearchProducts />} />
+          <Route path="about" element={<ShoppingAbout />} />
         </Route>
 
         {/* Rotas privadas da loja */}
-        <Route
-          path="/shop"
-          element={<ShoppingLayout />}
-        >
+        <Route path="/shop" element={<ShoppingLayout />}>
           <Route
             path="checkout"
             element={

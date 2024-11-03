@@ -3,7 +3,8 @@ import AdminOrdersView from "@/components/admin-view/orders"; // Importa o compo
 function AdminOrders() {
   return (
     <div>
-      <AdminOrdersView /> {/* Renderiza o componente AdminOrdersView dentro de uma div */}
+      <AdminOrdersView />{" "}
+      {/* Renderiza o componente AdminOrdersView dentro de uma div */}
     </div>
   );
 }

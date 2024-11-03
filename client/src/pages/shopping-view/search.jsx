@@ -36,34 +36,34 @@ function SearchProducts() {
     }
   }, [keyword]);
 
-// Função para adicionar produtos ao carrinho
-function handleAddtoCart(getCurrentProductId, getTotalStock) {
-  // Verifica se o usuário está logado
-  if (!user) {
-    toast({
-      title: "Por favor, faça login para adicionar itens ao carrinho", // Mensagem solicitando login
-      variant: "destructive",
-    });
-    return; // Retorna se o usuário não estiver logado
-  }
+  // Função para adicionar produtos ao carrinho
+  function handleAddtoCart(getCurrentProductId, getTotalStock) {
+    // Verifica se o usuário está logado
+    if (!user) {
+      toast({
+        title: "Por favor, faça login para adicionar itens ao carrinho", // Mensagem solicitando login
+        variant: "destructive",
+      });
+      return; // Retorna se o usuário não estiver logado
+    }
 
-  let getCartItems = cartItems.items || [];
+    let getCartItems = cartItems.items || [];
 
-  if (getCartItems.length) {
-    const indexOfCurrentItem = getCartItems.findIndex(
-      (item) => item.productId === getCurrentProductId
-    );
-    if (indexOfCurrentItem > -1) {
-      const getQuantity = getCartItems[indexOfCurrentItem].quantity;
-      if (getQuantity + 1 > getTotalStock) {
-        toast({
-          title: `Apenas ${getQuantity} pode ser adicionadas ao carrinho`, // Mensagem informando limite de quantidade
-          variant: "destructive",
-        });
-        return;
+    if (getCartItems.length) {
+      const indexOfCurrentItem = getCartItems.findIndex(
+        (item) => item.productId === getCurrentProductId
+      );
+      if (indexOfCurrentItem > -1) {
+        const getQuantity = getCartItems[indexOfCurrentItem].quantity;
+        if (getQuantity + 1 > getTotalStock) {
+          toast({
+            title: `Apenas ${getQuantity} pode ser adicionadas ao carrinho`, // Mensagem informando limite de quantidade
+            variant: "destructive",
+          });
+          return;
+        }
       }
     }
-  }
 
     dispatch(
       addToCart({
@@ -105,7 +105,9 @@ function handleAddtoCart(getCurrentProductId, getTotalStock) {
         </div>
       </div>
       {!searchResults.length ? (
-        <h1 className="text-5xl font-extrabold">Nenhum resultado encontrado!</h1>
+        <h1 className="text-5xl font-extrabold">
+          Nenhum resultado encontrado!
+        </h1>
       ) : null}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {searchResults.map((item) => (

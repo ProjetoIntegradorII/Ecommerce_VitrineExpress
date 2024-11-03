@@ -12,8 +12,6 @@ const addProductReview = async (req, res) => {
     const order = await Order.findOne({
       userId,
       "cartItems.productId": productId,
-      // Uncomment the next line to restrict reviews only to confirmed or delivered orders
-      // orderStatus: { $in: ["confirmed", "delivered"] },
     });
 
     if (!order) {

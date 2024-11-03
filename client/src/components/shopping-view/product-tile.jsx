@@ -9,8 +9,12 @@ function ShoppingProductTile({
   handleAddtoCart,
 }) {
   return (
-    <Card className="w-full max-w-sm mx-auto"> {/* Cartão para exibir as informações do produto */}
-      <div onClick={() => handleGetProductDetails(product?._id)}> {/* Ao clicar, chama a função para obter detalhes do produto */}
+    <Card className="w-full max-w-sm mx-auto">
+      {" "}
+      {/* Cartão para exibir as informações do produto */}
+      <div onClick={() => handleGetProductDetails(product?._id)}>
+        {" "}
+        {/* Ao clicar, chama a função para obter detalhes do produto */}
         <div className="relative">
           <img
             src={product?.image} // Imagem do produto
@@ -23,7 +27,8 @@ function ShoppingProductTile({
             </Badge>
           ) : product?.totalStock < 10 ? ( // Verifica se o estoque é baixo
             <Badge className="absolute top-2 left-2 bg-red-500 hover:bg-red-600">
-              {`Restam ${product?.totalStock} itens`} {/* Etiqueta para estoque baixo */}
+              {`Restam ${product?.totalStock} itens`}{" "}
+              {/* Etiqueta para estoque baixo */}
             </Badge>
           ) : product?.salePrice > 0 ? ( // Verifica se o produto está em promoção
             <Badge className="absolute top-2 left-2 bg-red-500 hover:bg-red-600">
@@ -31,11 +36,15 @@ function ShoppingProductTile({
             </Badge>
           ) : null}
         </div>
-        <CardContent className="p-4"> {/* Conteúdo do cartão */}
-          <h2 className="text-xl font-bold mb-2">{product?.title}</h2> {/* Título do produto */}
+        <CardContent className="p-4">
+          {" "}
+          {/* Conteúdo do cartão */}
+          <h2 className="text-xl font-bold mb-2">{product?.title}</h2>{" "}
+          {/* Título do produto */}
           <div className="flex justify-between items-center mb-2">
             <span className="text-[16px] text-muted-foreground">
-              {categoryOptionsMap[product?.category]} {/* Categoria do produto */}
+              {categoryOptionsMap[product?.category]}{" "}
+              {/* Categoria do produto */}
             </span>
             <span className="text-[16px] text-muted-foreground">
               {brandOptionsMap[product?.brand]} {/* Marca do produto */}
@@ -57,7 +66,9 @@ function ShoppingProductTile({
           </div>
         </CardContent>
       </div>
-      <CardFooter> {/* Rodapé do cartão */}
+      <CardFooter>
+        {" "}
+        {/* Rodapé do cartão */}
         {product?.totalStock === 0 ? ( // Se o produto estiver fora de estoque
           <Button className="w-full opacity-60 cursor-not-allowed">
             Fora de estoque {/* Botão desativado */}

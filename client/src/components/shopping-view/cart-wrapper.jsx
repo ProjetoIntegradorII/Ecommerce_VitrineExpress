@@ -22,19 +22,26 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
       : 0; // Retorna 0 se não houver itens
 
   return (
-    <SheetContent className="sm:max-w-md"> {/* Conteúdo do sheet com largura máxima em telas pequenas */}
+    <SheetContent className="sm:max-w-md">
+      {" "}
+      {/* Conteúdo do sheet com largura máxima em telas pequenas */}
       <SheetHeader>
         <SheetTitle>Carrinho</SheetTitle> {/* Título do sheet */}
       </SheetHeader>
-      <div className="mt-8 space-y-4"> {/* Espaço entre os itens do carrinho */}
+      <div className="mt-8 space-y-4">
+        {" "}
+        {/* Espaço entre os itens do carrinho */}
         {cartItems && cartItems.length > 0
           ? cartItems.map((item) => <UserCartItemsContent cartItem={item} />) // Mapeia e exibe cada item do carrinho
           : null}
       </div>
       <div className="mt-8 space-y-4">
-        <div className="flex justify-between"> {/* Flex container para total do carrinho */}
+        <div className="flex justify-between">
+          {" "}
+          {/* Flex container para total do carrinho */}
           <span className="font-bold">Total</span> {/* Texto "Total" */}
-          <span className="font-bold">R${totalCartAmount.toFixed(2)}</span> {/* Exibe o total formatado com duas casas decimais */}
+          <span className="font-bold">R${totalCartAmount.toFixed(2)}</span>{" "}
+          {/* Exibe o total formatado com duas casas decimais */}
         </div>
       </div>
       <Button

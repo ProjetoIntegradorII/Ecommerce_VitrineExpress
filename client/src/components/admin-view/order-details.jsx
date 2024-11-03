@@ -34,7 +34,8 @@ function AdminOrderDetailsView({ orderDetails }) {
     dispatch(
       updateOrderStatus({ id: orderDetails?._id, orderStatus: status })
     ).then((data) => {
-      if (data?.payload?.success) { // Se a atualização for bem-sucedida
+      if (data?.payload?.success) {
+        // Se a atualização for bem-sucedida
         dispatch(getOrderDetailsForAdmin(orderDetails?._id)); // Atualiza os detalhes da ordem
         dispatch(getAllOrdersForAdmin()); // Atualiza a lista de todas as ordens
         setFormData(initialFormData); // Reseta o formulário
@@ -59,22 +60,26 @@ function AdminOrderDetailsView({ orderDetails }) {
           {/* Data da ordem */}
           <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Data do Pedido</p>
-            <Label>{orderDetails?.orderDate.split("T")[0]}</Label> {/* Exibe a data da ordem */}
+            <Label>{orderDetails?.orderDate.split("T")[0]}</Label>{" "}
+            {/* Exibe a data da ordem */}
           </div>
           {/* Preço total da ordem */}
           <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Preço do Pedido</p>
-            <Label>${orderDetails?.totalAmount}</Label> {/* Exibe o valor total da ordem */}
+            <Label>${orderDetails?.totalAmount}</Label>{" "}
+            {/* Exibe o valor total da ordem */}
           </div>
           {/* Método de pagamento */}
           <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Método de Pagamento</p>
-            <Label>{orderDetails?.paymentMethod}</Label> {/* Exibe o método de pagamento */}
+            <Label>{orderDetails?.paymentMethod}</Label>{" "}
+            {/* Exibe o método de pagamento */}
           </div>
           {/* Status de pagamento */}
           <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Status do Pagamento</p>
-            <Label>{orderDetails?.paymentStatus}</Label> {/* Exibe o status de pagamento */}
+            <Label>{orderDetails?.paymentStatus}</Label>{" "}
+            {/* Exibe o status de pagamento */}
           </div>
           {/* Status da ordem */}
           <div className="flex mt-2 items-center justify-between">
@@ -95,9 +100,7 @@ function AdminOrderDetailsView({ orderDetails }) {
             </Label>
           </div>
         </div>
-        
         <Separator /> {/* Separador visual */}
-        
         {/* Detalhes da ordem */}
         <div className="grid gap-4">
           <div className="grid gap-2">
@@ -107,8 +110,10 @@ function AdminOrderDetailsView({ orderDetails }) {
               {orderDetails?.cartItems && orderDetails?.cartItems.length > 0
                 ? orderDetails?.cartItems.map((item) => (
                     <li className="flex items-center justify-between">
-                      <span>Título: {item.title}</span> {/* Título do produto */}
-                      <span>Quantidade: {item.quantity}</span> {/* Quantidade */}
+                      <span>Título: {item.title}</span>{" "}
+                      {/* Título do produto */}
+                      <span>Quantidade: {item.quantity}</span>{" "}
+                      {/* Quantidade */}
                       <span>Preço: R${item.price}</span> {/* Preço */}
                     </li>
                   ))
@@ -116,7 +121,6 @@ function AdminOrderDetailsView({ orderDetails }) {
             </ul>
           </div>
         </div>
-        
         {/* Informações de envio */}
         <div className="grid gap-4">
           <div className="grid gap-2">
@@ -128,11 +132,11 @@ function AdminOrderDetailsView({ orderDetails }) {
               <span>{orderDetails?.addressInfo?.city}</span> {/* Cidade */}
               <span>{orderDetails?.addressInfo?.pincode}</span> {/* CEP */}
               <span>{orderDetails?.addressInfo?.phone}</span> {/* Telefone */}
-              <span>{orderDetails?.addressInfo?.notes}</span> {/* Notas adicionais */}
+              <span>{orderDetails?.addressInfo?.notes}</span>{" "}
+              {/* Notas adicionais */}
             </div>
           </div>
         </div>
-
         {/* Formulário para atualizar o status da ordem */}
         <div>
           <CommonForm

@@ -34,71 +34,106 @@ function AdminOrdersView() {
     dispatch(getAllOrdersForAdmin());
   }, [dispatch]);
 
-
   // useEffect para abrir o modal quando os detalhes de uma ordem são obtidos
   useEffect(() => {
     if (orderDetails !== null) setOpenDetailsDialog(true);
   }, [orderDetails]);
 
   return (
-    <Card> {/* Estrutura principal em um cartão */}
-      <CardHeader> {/* Cabeçalho do cartão */}
+    <Card>
+      {" "}
+      {/* Estrutura principal em um cartão */}
+      <CardHeader>
+        {" "}
+        {/* Cabeçalho do cartão */}
         <CardTitle>Todos os Pedidos</CardTitle> {/* Título do cartão */}
       </CardHeader>
-      <CardContent> {/* Conteúdo do cartão */}
-        <Table> {/* Tabela para exibir a lista de pedidos */}
-          <TableHeader> {/* Cabeçalho da tabela */}
-            <TableRow> {/* Linha do cabeçalho */}
-              <TableHead>ID do Pedido</TableHead> {/* Cabeçalho para o ID da ordem */}
-              <TableHead>Data do Pedido</TableHead> {/* Cabeçalho para a data da ordem */}
-              <TableHead>Status do Pedido</TableHead> {/* Cabeçalho para o status da ordem */}
-              <TableHead>Preço do Pedido</TableHead> {/* Cabeçalho para o preço total */}
+      <CardContent>
+        {" "}
+        {/* Conteúdo do cartão */}
+        <Table>
+          {" "}
+          {/* Tabela para exibir a lista de pedidos */}
+          <TableHeader>
+            {" "}
+            {/* Cabeçalho da tabela */}
+            <TableRow>
+              {" "}
+              {/* Linha do cabeçalho */}
+              <TableHead>ID do Pedido</TableHead>{" "}
+              {/* Cabeçalho para o ID da ordem */}
+              <TableHead>Data do Pedido</TableHead>{" "}
+              {/* Cabeçalho para a data da ordem */}
+              <TableHead>Status do Pedido</TableHead>{" "}
+              {/* Cabeçalho para o status da ordem */}
+              <TableHead>Preço do Pedido</TableHead>{" "}
+              {/* Cabeçalho para o preço total */}
               <TableHead>
-                <span className="sr-only">Detalhes</span> {/* Cabeçalho oculto para acessibilidade, referente ao botão de detalhes */}
+                <span className="sr-only">Detalhes</span>{" "}
+                {/* Cabeçalho oculto para acessibilidade, referente ao botão de detalhes */}
               </TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody> {/* Corpo da tabela, onde os dados das ordens são renderizados */}
+          <TableBody>
+            {" "}
+            {/* Corpo da tabela, onde os dados das ordens são renderizados */}
             {orderList && orderList.length > 0 // Verifica se a lista de pedidos existe e tem itens
-              ? orderList.map((orderItem) => ( // Mapeia os pedidos para renderizá-los na tabela
-                  <TableRow> {/* Linha de dados para cada pedido */}
-                    <TableCell>{orderItem?._id}</TableCell> {/* Célula contendo o ID da ordem */}
-                    <TableCell>{orderItem?.orderDate.split("T")[0]}</TableCell> {/* Célula contendo a data da ordem, formatada */}
-                    <TableCell>
-                      <Badge
-                        className={`py-1 px-3 ${
-                          orderItem?.orderStatus === "confirmed"
-                            ? "bg-green-500"
-                            : orderItem?.orderStatus === "rejected"
-                            ? "bg-red-600"
-                            : "bg-black"
-                        }`}
-                      > {/* Etiqueta (badge) colorida para exibir o status da ordem */}
-                        {orderItem?.orderStatus}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>R${orderItem?.totalAmount}</TableCell> {/* Célula contendo o preço total da ordem */}
-                    <TableCell> {/* Célula contendo o botão de visualizar detalhes */}
-                      <Dialog
-                        open={openDetailsDialog} // Controla a abertura do modal
-                        onOpenChange={() => {
-                          setOpenDetailsDialog(false); // Fecha o modal quando o estado mudar
-                          dispatch(resetOrderDetails()); // Reseta os detalhes da ordem quando o modal for fechado
-                        }}
-                      >
-                        <Button
-                          onClick={() =>
-                            handleFetchOrderDetails(orderItem?._id) // Busca os detalhes da ordem quando o botão for clicado
-                          }
+              ? orderList.map(
+                  (
+                    orderItem // Mapeia os pedidos para renderizá-los na tabela
+                  ) => (
+                    <TableRow>
+                      {" "}
+                      {/* Linha de dados para cada pedido */}
+                      <TableCell>{orderItem?._id}</TableCell>{" "}
+                      {/* Célula contendo o ID da ordem */}
+                      <TableCell>
+                        {orderItem?.orderDate.split("T")[0]}
+                      </TableCell>{" "}
+                      {/* Célula contendo a data da ordem, formatada */}
+                      <TableCell>
+                        <Badge
+                          className={`py-1 px-3 ${
+                            orderItem?.orderStatus === "confirmed"
+                              ? "bg-green-500"
+                              : orderItem?.orderStatus === "rejected"
+                              ? "bg-red-600"
+                              : "bg-black"
+                          }`}
                         >
-                          Ver Detalhes
-                        </Button>
-                        <AdminOrderDetailsView orderDetails={orderDetails} /> {/* Componente que exibe os detalhes da ordem */}
-                      </Dialog>
-                    </TableCell>
-                  </TableRow>
-                ))
-              : null} {/* Exibe null se não houver pedidos */}
+                          {" "}
+                          {/* Etiqueta (badge) colorida para exibir o status da ordem */}
+                          {orderItem?.orderStatus}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>R${orderItem?.totalAmount}</TableCell>{" "}
+                      {/* Célula contendo o preço total da ordem */}
+                      <TableCell>
+                        {" "}
+                        {/* Célula contendo o botão de visualizar detalhes */}
+                        <Dialog
+                          open={openDetailsDialog} // Controla a abertura do modal
+                          onOpenChange={() => {
+                            setOpenDetailsDialog(false); // Fecha o modal quando o estado mudar
+                            dispatch(resetOrderDetails()); // Reseta os detalhes da ordem quando o modal for fechado
+                          }}
+                        >
+                          <Button
+                            onClick={
+                              () => handleFetchOrderDetails(orderItem?._id) // Busca os detalhes da ordem quando o botão for clicado
+                            }
+                          >
+                            Ver Detalhes
+                          </Button>
+                          <AdminOrderDetailsView orderDetails={orderDetails} />{" "}
+                          {/* Componente que exibe os detalhes da ordem */}
+                        </Dialog>
+                      </TableCell>
+                    </TableRow>
+                  )
+                )
+              : null}{" "}
+            {/* Exibe null se não houver pedidos */}
           </TableBody>
         </Table>
       </CardContent>
