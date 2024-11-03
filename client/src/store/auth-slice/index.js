@@ -17,7 +17,7 @@ export const registerUser = createAsyncThunk(
   async (formData) => {
     // Faz uma requisição POST para registrar um novo usuário
     const response = await axios.post(
-      "http://localhost:5000/api/auth/register", // URL da API
+      `${import.meta.env.VITE_API_URL}/api/auth/register`, // URL da API
       formData, // Dados do formulário
       {
         withCredentials: true, // Inclui cookies na requisição
@@ -34,7 +34,7 @@ export const loginUser = createAsyncThunk(
   async (formData) => {
     // Faz uma requisição POST para fazer login
     const response = await axios.post(
-      "http://localhost:5000/api/auth/login", // URL da API
+      `${import.meta.env.VITE_API_URL}/api/auth/login`, // URL da API
       formData, // Dados do formulário
       {
         withCredentials: true, // Inclui cookies na requisição
@@ -51,7 +51,7 @@ export const logoutUser = createAsyncThunk(
   async () => {
     // Faz uma requisição POST para deslogar o usuário
     const response = await axios.post(
-      "http://localhost:5000/api/auth/logout", // URL da API
+      `${import.meta.env.VITE_API_URL}/api/auth/logout`, // URL da API
       {}, // Não é necessário enviar dados para logout
       {
         withCredentials: true, // Inclui cookies na requisição
@@ -68,7 +68,7 @@ export const checkAuth = createAsyncThunk(
   async () => {
     // Faz uma requisição GET para verificar se o usuário está autenticado
     const response = await axios.get(
-      "http://localhost:5000/api/auth/check-auth", // URL da API
+      `${import.meta.env.VITE_API_URL}/api/auth/check-auth`, // URL da API
       {
         withCredentials: true, // Inclui cookies na requisição
         headers: {

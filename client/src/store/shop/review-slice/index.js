@@ -14,7 +14,7 @@ export const addReview = createAsyncThunk(
   async (formdata) => {
     // Faz uma requisição POST para adicionar a avaliação
     const response = await axios.post(
-      `http://localhost:5000/api/shop/review/add`,
+      `${import.meta.env.VITE_API_URL}/api/shop/review/add`,
       formdata
     );
 
@@ -28,7 +28,7 @@ export const getReviews = createAsyncThunk(
   async (id) => {
     // Faz uma requisição GET para obter as avaliações do produto pelo ID
     const response = await axios.get(
-      `http://localhost:5000/api/shop/review/${id}`
+      `${import.meta.env.VITE_API_URL}/api/shop/review/${id}`
     );
 
     return response.data; // Retorna os dados da resposta

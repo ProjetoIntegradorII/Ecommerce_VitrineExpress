@@ -52,7 +52,7 @@ function ProductImageUpload({
     const data = new FormData(); // Cria um novo FormData
     data.append("my_file", imageFile); // Adiciona o arquivo de imagem ao FormData
     const response = await axios.post(
-      "http://localhost:5000/api/admin/products/upload-image", // URL de upload da imagem
+      `${import.meta.env.VITE_API_URL}/api/admin/products/upload-image`, // URL de upload da imagem
       data
     );
 

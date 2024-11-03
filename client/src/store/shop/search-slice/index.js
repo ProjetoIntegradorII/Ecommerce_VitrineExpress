@@ -14,7 +14,7 @@ export const getSearchResults = createAsyncThunk(
   async (keyword) => {
     // Faz uma requisição GET para obter os resultados da busca com base na palavra-chave
     const response = await axios.get(
-      `http://localhost:5000/api/shop/search/${keyword}`
+      `${import.meta.env.VITE_API_URL}/api/shop/search/${keyword}`
     );
 
     return response.data; // Retorna os dados da resposta

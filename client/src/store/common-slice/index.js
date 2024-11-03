@@ -14,7 +14,7 @@ export const getFeatureImages = createAsyncThunk(
   "common/getFeatureImages", // Identificador da ação
   async () => {
     const response = await axios.get(
-      `http://localhost:5000/api/common/feature/get`
+      `${import.meta.env.VITE_API_URL}/api/common/feature/get`
     );
     return response.data; // Retorna os dados da resposta
   }
@@ -25,7 +25,7 @@ export const addFeatureImage = createAsyncThunk(
   "common/addFeatureImage", // Identificador da ação
   async (image) => {
     const response = await axios.post(
-      `http://localhost:5000/api/common/feature/add`,
+      `${import.meta.env.VITE_API_URL}/api/common/feature/add`,
       { image } // Envia a imagem no corpo da requisição
     );
     return response.data; // Retorna os dados da resposta
@@ -37,7 +37,7 @@ export const deleteFeatureImage = createAsyncThunk(
   "common/deleteFeatureImage", // Identificador da ação
   async (imageId) => {
     const response = await axios.delete(
-      `http://localhost:5000/api/common/feature/delete/${imageId}`
+      `${import.meta.env.VITE_API_URL}/api/common/feature/delete/${imageId}`
     );
     return { id: imageId, success: response.data.success }; // Retorna o ID da imagem deletada e o status de sucesso
   }

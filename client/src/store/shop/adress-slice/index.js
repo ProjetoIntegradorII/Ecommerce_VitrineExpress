@@ -15,7 +15,7 @@ export const addNewAddress = createAsyncThunk(
   async (formData) => {
     // Faz uma requisição POST para adicionar um novo endereço
     const response = await axios.post(
-      "http://localhost:5000/api/shop/address/add",
+      `${import.meta.env.VITE_API_URL}/api/shop/address/add`,
       formData // Dados do formulário
     );
 
@@ -29,7 +29,7 @@ export const fetchAllAddresses = createAsyncThunk(
   async (userId) => {
     // Faz uma requisição GET para obter todos os endereços do usuário
     const response = await axios.get(
-      `http://localhost:5000/api/shop/address/get/${userId}`
+      `${import.meta.env.VITE_API_URL}/api/shop/address/get/${userId}`
     );
 
     return response.data; // Retorna os dados da resposta
@@ -42,7 +42,7 @@ export const editaAddress = createAsyncThunk(
   async ({ userId, addressId, formData }) => {
     // Faz uma requisição PUT para atualizar o endereço
     const response = await axios.put(
-      `http://localhost:5000/api/shop/address/update/${userId}/${addressId}`,
+      `${import.meta.env.VITE_API_URL}/api/shop/address/update/${userId}/${addressId}`,
       formData // Dados do formulário
     );
 
@@ -56,7 +56,7 @@ export const deleteAddress = createAsyncThunk(
   async ({ userId, addressId }) => {
     // Faz uma requisição DELETE para remover o endereço
     const response = await axios.delete(
-      `http://localhost:5000/api/shop/address/delete/${userId}/${addressId}`
+      `${import.meta.env.VITE_API_URL}/api/shop/address/delete/${userId}/${addressId}`
     );
 
     return response.data; // Retorna os dados da resposta
