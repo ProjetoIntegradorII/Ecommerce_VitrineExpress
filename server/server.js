@@ -1,13 +1,10 @@
-// Importa o framework Express para criar um servidor web.
+require("dotenv").config(); // Carrega as variáveis do .env
 const express = require("express");
-// Importa o Mongoose para gerenciar a conexão com o MongoDB.
 const mongoose = require("mongoose");
-// Importa o cookie-parser para analisar cookies em requisições.
 const cookieParser = require("cookie-parser");
-// Importa o CORS para habilitar requisições entre origens diferentes.
 const cors = require("cors");
 
-// Importa os roteadores definidos para gerenciar diferentes partes da API.
+// Importa os roteadores
 const authRouter = require("./routes/auth/auth-routes");
 const adminProductsRouter = require("./routes/admin/products-routes");
 const adminOrderRouter = require("./routes/admin/order-routes");
@@ -19,36 +16,29 @@ const shopSearchRouter = require("./routes/shop/search-routes");
 const shopReviewRouter = require("./routes/shop/review-routes");
 const commonFeatureRouter = require("./routes/common/feature-routes");
 
-// Cria uma conexão com o banco de dados MongoDB.
-// É possível criar um arquivo separado para gerenciar a conexão, mas aqui é feito diretamente.
+// Conecta ao MongoDB usando a variável de ambiente
 mongoose
-  .connect("mongodb+srv://projetointegradorii014:Proj&toII014.@ecommerce.brzpa.mongodb.net/")
-  .then(() => console.log("MongoDB connected")) // Exibe uma mensagem de sucesso na conexão.
-  .catch((error) => console.log(error)); // Exibe um erro caso a conexão falhe.
+  .connect(process.env.MONGODB_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch((error) => console.log(error));
 
-const app = express(); // Cria uma instância do aplicativo Express.
-const PORT = process.env.PORT || 5000; // Define a porta do servidor; usa a variável de ambiente ou 5000 por padrão.
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-// Configura as opções de CORS para permitir requisições de um domínio específico.
+// Configuração do CORS
 app.use(
   cors({
-    origin: "http://localhost:5173", // Permite requisições apenas desse domínio.
-    methods: ["GET", "POST", "DELETE", "PUT"], // Permite métodos HTTP especificados.
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "Cache-Control",
-      "Expires",
-      "Pragma",
-    ], // Define os cabeçalhos permitidos.
-    credentials: true, // Permite envio de cookies junto com as requisições.
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cache-Control", "Expires", "Pragma"],
+    credentials: true,
   })
 );
 
-app.use(cookieParser()); // Ativa o cookie-parser.
-app.use(express.json()); // Habilita a análise do corpo das requisições como JSON.
+app.use(cookieParser());
+app.use(express.json());
 
-// Define as rotas da API para autenticação e gerenciamento de produtos e pedidos.
+// Define as rotas da API
 app.use("/api/auth", authRouter);
 app.use("/api/admin/products", adminProductsRouter);
 app.use("/api/admin/orders", adminOrderRouter);
@@ -60,5 +50,5 @@ app.use("/api/shop/search", shopSearchRouter);
 app.use("/api/shop/review", shopReviewRouter);
 app.use("/api/common/feature", commonFeatureRouter);
 
-// Inicia o servidor na porta especificada e exibe uma mensagem indicando que está em execução.
+// Inicia o servidor
 app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));

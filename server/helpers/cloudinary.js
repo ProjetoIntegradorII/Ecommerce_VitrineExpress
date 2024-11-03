@@ -1,11 +1,12 @@
 const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
+require("dotenv").config(); // Carrega as variáveis de ambiente
 
-// Configuração do Cloudinary
+// Configuração do Cloudinary usando variáveis do .env
 cloudinary.config({
-  cloud_name: "divlu7osh",
-  api_key: "968898592485153",
-  api_secret: "1Aeo1Sv2G9jljxYPw7HeC5r3LGw",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 // Armazenamento em memória com Multer

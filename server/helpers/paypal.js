@@ -1,9 +1,11 @@
 const paypal = require("paypal-rest-sdk");
+require("dotenv").config(); // Carrega as variáveis de ambiente
 
+// Configuração do PayPal usando variáveis do .env
 paypal.configure({
-  mode: 'sandbox',
-  client_id: 'AfJkAKVfWYqESTWcpUnF1zwdH5cVD1sNA68LdulTPdc7en4c1bhiOI88ngRgV96MZdAxlAnG2oF0cuwd',
-  client_secret: 'EP11OGCGvZviD2cYHQuETlws3wxdyZacispjDRQO5nxoQ77ILqYmtfulZXTArhXUU1vcfP61cTLvpJct',
+  mode: process.env.PAYPAL_MODE, // 'sandbox' ou 'live'
+  client_id: process.env.PAYPAL_CLIENT_ID,
+  client_secret: process.env.PAYPAL_CLIENT_SECRET,
 });
 
 module.exports = paypal;
