@@ -9,6 +9,7 @@ const initialState = {
   isLoading: true, // Indica se a requisição está em andamento
   user: null, // Armazena os dados do usuário autenticado
   error: null, // Armazena mensagens de erro, se houver
+  token: null,
 };
 
 // Cria uma ação assíncrona para registrar um usuário
@@ -63,7 +64,7 @@ export const logoutUser = createAsyncThunk(
 );
 
 // Cria uma ação assíncrona para verificar a autenticação do usuário
-export const checkAuth = createAsyncThunk(
+/*export const checkAuth = createAsyncThunk(
   "auth/checkauth", // Identificador da ação
   async () => {
     // Faz uma requisição GET para verificar se o usuário está autenticado
@@ -72,6 +73,26 @@ export const checkAuth = createAsyncThunk(
       {
         withCredentials: true, // Inclui cookies na requisição
         headers: {
+          "Cache-Control":
+            "no-store, no-cache, must-revalidate, proxy-revalidate", // Evita cache na resposta
+        },
+      }
+    );
+
+    return response.data; // Retorna os dados da resposta
+  }
+); */
+
+export const checkAuth = createAsyncThunk(
+  "auth/checkauth", // Identificador da ação
+  async (token) => {
+    // Faz uma requisição GET para verificar se o usuário está autenticado
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/auth/check-auth`, // URL da API
+      {
+        withCredentials: true, // Inclui cookies na requisição
+        headers: {
+          Authorization: `Bearer ${token}`,
           "Cache-Control":
             "no-store, no-cache, must-revalidate, proxy-revalidate", // Evita cache na resposta
         },
@@ -89,6 +110,11 @@ const authSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload; // Define o usuário
+      resetTokenAndCredentials :(state)=>{
+        state.isAuthenticated = false;
+        state.user = null
+        state.token = null
+      }
     },
   },
   extraReducers: (builder) => {
@@ -108,6 +134,7 @@ const authSlice = createSlice({
         state.user = null; // Limpa os dados do usuário após falha no registro
         state.isAuthenticated = false; // Usuário não está autenticado
         state.error = action.error.message; // Armazena a mensagem de erro
+        state.token = null;
       })
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true; // Inicia o carregamento durante o login
@@ -117,6 +144,8 @@ const authSlice = createSlice({
         state.isLoading = false; // Termina o carregamento
         state.user = action.payload.success ? action.payload.user : null; // Define o usuário se o login for bem-sucedido
         state.isAuthenticated = action.payload.success; // Atualiza o estado de autenticação
+        state.token = action.payload.token;
+        sessionStorage.setItem("token", JSON.stringify(action.payload.token));
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false; // Termina o carregamento
@@ -148,6 +177,6 @@ const authSlice = createSlice({
 });
 
 // Exporta a ação setUser para ser utilizada em componentes
-export const { setUser } = authSlice.actions;
+export const { setUser, resetTokenAndCredentials } = authSlice.actions;
 // Exporta o redutor do slice para ser usado na store
 export default authSlice.reducer;

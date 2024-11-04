@@ -13,7 +13,8 @@ const registerUser = async (req, res) => {
     if (checkUser)
       return res.json({
         success: false,
-        message: "Já existe usuário com o mesmo e-mail! Por favor, tente novamente",
+        message:
+          "Já existe usuário com o mesmo e-mail! Por favor, tente novamente",
       });
 
     // Criptografa a senha com um salt de 12
@@ -77,9 +78,21 @@ const loginUser = async (req, res) => {
     );
 
     // Define o cookie com o token e retorna os dados do usuário
-    res.cookie("token", token, { httpOnly: true, secure: true }).json({
+    /* res.cookie("token", token, { httpOnly: true, secure: true }).json({
       success: true,
       message: "Logado com sucesso",
+      user: {
+        email: checkUser.email,
+        role: checkUser.role,
+        id: checkUser._id,
+        userName: checkUser.userName,
+      },
+    }); */
+
+    res.status(200).json({
+      success: true,
+      messagem: "Logado com sucesso",
+      token,
       user: {
         email: checkUser.email,
         role: checkUser.role,
@@ -106,8 +119,30 @@ const logoutUser = (req, res) => {
 };
 
 // Middleware de autenticação
-const authMiddleware = async (req, res, next) => {
+/*const authMiddleware = async (req, res, next) => {
   const token = req.cookies.token; // Obtém o token do cookie
+  if (!token)
+    return res.status(401).json({
+      success: false,
+      message: "Usuário não autorizado!",
+    });
+
+  try {
+    // Verifica e decodifica o token
+    const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
+    req.user = decoded; // Armazena os dados decodificados na requisição
+    next(); // Chama o próximo middleware
+  } catch (error) {
+    res.status(401).json({
+      success: false,
+      message: "Usuário não autorizado!",
+    });
+  }
+};*/
+
+const authMiddleware = async (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1]
   if (!token)
     return res.status(401).json({
       success: false,

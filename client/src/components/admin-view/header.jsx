@@ -2,15 +2,20 @@
 import { AlignJustify, LogOut } from "lucide-react"; // Ícones para o menu e logout
 import { Button } from "../ui/button"; // Componente de botão personalizado
 import { useDispatch } from "react-redux"; // Hook para despachar ações do Redux
-import { logoutUser } from "@/store/auth-slice"; // Ação de logout do slice de autenticação
+import { logoutUser, resetTokenAndCredentials } from "@/store/auth-slice"; // Ação de logout do slice de autenticação
+import { useNavigate } from "react-router-dom";
 
 // Define o componente AdminHeader
 function AdminHeader({ setOpen }) {
   const dispatch = useDispatch(); // Hook para obter a função dispatch do Redux
+  const navigate = useNavigate();
 
   // Função para lidar com o logout do usuário
   function handleLogout() {
-    dispatch(logoutUser()); // Despacha a ação de logout
+    //dispatch(logoutUser()); // Despacha a ação de logout
+    dispatch(resetTokenAndCredentials());
+    sessionStorage.clear();
+    navigate("/auth/login");
   }
 
   return (
