@@ -76,6 +76,8 @@ function App() {
           <Route path="listing" element={<ShoppingListing />} />
           <Route path="search" element={<SearchProducts />} />
           <Route path="about" element={<ShoppingAbout />} />
+          <Route path="paypal-return" element={<PaypalReturnPage />} />
+          <Route path="payment-success" element={<PaymentSuccessPage />} />
         </Route>
 
         {/* Rotas privadas da loja */}
@@ -96,8 +98,7 @@ function App() {
               </CheckAuth>
             }
           />
-          <Route path="paypal-return" element={<PaypalReturnPage />} />
-          <Route path="payment-success" element={<PaymentSuccessPage />} />
+
         </Route>
 
         {/* Página para usuários não autorizados */}
