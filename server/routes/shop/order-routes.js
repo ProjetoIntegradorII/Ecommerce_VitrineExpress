@@ -18,6 +18,9 @@ router.post("/create", createOrder);
 // Define a rota para capturar o pagamento de um pedido (método POST).
 router.post("/capture", capturePayment);
 
+// Define a rota para capturar o pagamento após o retorno do PayPal (método GET).
+router.get("/paypal-return", capturePayment); // Adicione esta linha
+
 // Define a rota para listar todos os pedidos de um usuário específico (método GET).
 // O :userId é um parâmetro de rota que identifica o usuário.
 router.get("/list/:userId", getAllOrdersByUser);
