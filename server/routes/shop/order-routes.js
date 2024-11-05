@@ -1,33 +1,31 @@
-// Importa o framework Express para criar um servidor web e gerenciar rotas.
 const express = require("express");
-
-// Importa as funções do controlador de pedidos que lidam com operações relacionadas a pedidos.
 const {
-  createOrder,         // Função para criar um novo pedido.
-  getAllOrdersByUser,  // Função para recuperar todos os pedidos de um usuário específico.
-  getOrderDetails,     // Função para recuperar detalhes de um pedido específico.
-  capturePayment,      // Função para capturar o pagamento de um pedido.
+  createOrder,
+  getAllOrdersByUser,
+  getOrderDetails,
+  capturePayment,
 } = require("../../controllers/shop/order-controller");
 
-// Cria uma instância do roteador Express para definir rotas relacionadas a pedidos.
 const router = express.Router();
 
-// Define a rota para criar um novo pedido (método POST).
+// Rota para criar um novo pedido
 router.post("/create", createOrder);
 
-// Define a rota para capturar o pagamento de um pedido (método POST).
+// Rota para capturar o pagamento de um pedido
 router.post("/capture", capturePayment);
 
-// Define a rota para capturar o pagamento após o retorno do PayPal (método GET).
-router.get("/paypal-return", capturePayment); // Adicione esta linha
+// Rota para capturar o retorno do PayPal e redirecionar para o frontend
+router.get("/paypal-return", (req, res) => {
+  const { paymentId, token, PayerID } = req.query;
 
-// Define a rota para listar todos os pedidos de um usuário específico (método GET).
-// O :userId é um parâmetro de rota que identifica o usuário.
+  // Redireciona para o frontend com os parâmetros necessários
+  res.redirect(`${process.env.CLIENT_BASE_URL}/shop/paypal-return?paymentId=${paymentId}&token=${token}&PayerID=${PayerID}`);
+});
+
+// Rota para listar todos os pedidos de um usuário específico
 router.get("/list/:userId", getAllOrdersByUser);
 
-// Define a rota para recuperar os detalhes de um pedido específico (método GET).
-// O :id é um parâmetro de rota que identifica o pedido.
+// Rota para recuperar os detalhes de um pedido específico
 router.get("/details/:id", getOrderDetails);
 
-// Exporta o roteador para que possa ser utilizado em outras partes da aplicação.
 module.exports = router;
