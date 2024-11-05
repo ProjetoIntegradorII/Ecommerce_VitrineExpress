@@ -21,7 +21,7 @@ function PaypalReturnPage() {
 
           // Aplica um delay de 3 segundos antes de redirecionar
           setTimeout(() => {
-            window.location.href = "/shop/payment-success"; // Redireciona para a página de sucesso
+            window.location.href = `${import.meta.env.VITE_API_URL}/shop/payment-success`; // Redireciona para a página de sucesso
           }, 3000); // 3000 milissegundos = 3 segundos
         }
       });
