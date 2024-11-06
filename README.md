@@ -30,8 +30,7 @@ Este projeto é uma aplicação de e-commerce desenvolvida como parte da discipl
 - **Avaliações de Produtos**: Usuários podem deixar comentários e avaliações sobre os produtos.
 
 ## 📸 Demonstração
-- **link do Site**: https://ecommerce-vitrineexpress-1.onrender.com
-- **Video de Apresentação**:
+- **Link do Site**: https://ecommerce-vitrineexpress-1.onrender.com
 
 ## 📂 Estrutura do Projeto
 O projeto está organizado em duas pastas principais:
