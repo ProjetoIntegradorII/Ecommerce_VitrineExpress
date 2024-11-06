@@ -37,7 +37,7 @@ O projeto está organizado em duas pastas principais:
 - **Frontend**: contém o código do React e da interface do usuário.
 - **Backend**: contém a API criada com Express.js e MongoDB para gerenciar os dados da aplicação.
 
-### Pré-requisitos
+## Pré-requisitos
 Para executar este projeto, você precisa ter os seguintes itens instalados:
 - [Node.js](https://nodejs.org/) (versão recomendada: >= 14.x)
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) (ou MongoDB local)
