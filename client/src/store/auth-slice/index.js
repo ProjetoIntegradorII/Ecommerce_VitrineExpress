@@ -105,16 +105,16 @@ export const checkAuth = createAsyncThunk(
 
 // Cria um slice de autenticação usando Redux Toolkit
 const authSlice = createSlice({
-  name: "auth", // Nome do slice
-  initialState, // Estado inicial do slice
+  name: "auth",
+  initialState,
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload; // Define o usuário
-      resetTokenAndCredentials :(state)=>{
-        state.isAuthenticated = false;
-        state.user = null
-        state.token = null
-      }
+      state.user = action.payload;
+    },
+    resetTokenAndCredentials: (state) => { // Corrige a sintaxe aqui
+      state.isAuthenticated = false;
+      state.user = null;
+      state.token = null;
     },
   },
   extraReducers: (builder) => {
