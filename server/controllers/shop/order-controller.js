@@ -29,7 +29,7 @@ const createOrder = async (req, res) => {
         payment_method: "paypal",
       },
       redirect_urls: {
-        return_url: `${process.env.CLIENT_BASE_URL}/shop/paypal-return`,
+        return_url: `https://ecommerce-vitrineexpress-1.onrender.com/shop/paypal-return`,
         cancel_url: `${process.env.CLIENT_BASE_URL}/shop/paypal-cancel`,
       },
       transactions: [
