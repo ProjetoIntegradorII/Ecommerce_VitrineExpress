@@ -30,21 +30,23 @@ Este projeto é uma aplicação de e-commerce desenvolvida como parte da discipl
 - **Avaliações de Produtos**: Usuários podem deixar comentários e avaliações sobre os produtos.
 
 ## 📸 Demonstração
-
+- **link do Site**:https://ecommerce-vitrineexpress-1.onrender.com
+- **Videos de Apresentação**:
 
 ## 📂 Estrutura do Projeto
 O projeto está organizado em duas pastas principais:
 - **Frontend**: contém o código do React e da interface do usuário.
 - **Backend**: contém a API criada com Express.js e MongoDB para gerenciar os dados da aplicação.
 
-## Pré-requisitos
+## 🔧 Como Executar o Projeto
+
+### ⚙️ Pré-requisitos
 Para executar este projeto, você precisa ter os seguintes itens instalados:
 - [Node.js](https://nodejs.org/) (versão recomendada: >= 14.x)
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) (ou MongoDB local)
 - Conta no [Cloudinary](https://cloudinary.com/) para armazenamento de imagens
 - Conta no [Paypal](https://paypal.com/) para simulação de pagamentos
 
-## 🔧 Como Executar o Projeto
 1. Clone o repositório para o seu GitHub
 2. Ao abir o documento via VSCode execute o comando "npm install" nas pastas Client e Server
 3. Crie um arquivo .env na pasta Cliente e Server e configure as variáveis
